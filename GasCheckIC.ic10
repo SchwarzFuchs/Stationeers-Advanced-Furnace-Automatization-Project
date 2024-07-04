@@ -1,0 +1,127 @@
+	move r4 0
+	l r5 d2 Setting
+	l r2 db Setting
+	seq r15 r2 -102
+	seq r14 r2 -100
+	or r13 r15 r14
+	beqz r13 if0exit
+	s d4 On 1
+	s d4 Color 5
+	s d5 Mode 0
+	s d5 On 1
+	s d1 On 1
+	s d3 On 1
+	yield
+	l r0 d1 RatioVolatiles
+	l r1 d3 RatioVolatiles
+	sgtz r12 r0
+	sgtz r11 r1
+	or r10 r12 r11
+	beqz r10 if1exit
+	s d4 Color 4
+	brne r2 -102 4
+	s d5 SoundAlert 28
+	sleep 1
+	move r4 1
+	if1exit:
+	l r8 d1 Temperature
+	l r9 d3 Temperature
+	lbn r6 -851746783 -1941351525 Setting Maximum
+	lbn r7 -851746783 -823947099 Setting Maximum
+	lbn r0 272136332 -382368696 TotalMoles Sum
+	lbn r1 1280378227 1739686464 TotalMoles Sum
+	add r0 r0 r1
+	l r1 d1 TotalMoles
+	add r0 r0 r1
+	lbn r1 -851746783 -679739121 Setting Maximum
+	sub r12 r9 r8
+	div r12 100 r12
+	mul r11 r8 r9
+	div r11 r11 r6
+	mul r11 r11 r1
+	sub r11 r11 r8
+	mul r12 r12 r11
+	div r1 r12 100
+	mul r12 r7 1000
+	add r12 r12 1000000
+	mul r12 r12 r1
+	mul r11 8.314462 r8
+	div r3 r12 r11
+	div r3 r0 r3
+	sbn -815193061 -2015441916 Mode 1
+	sbn -815193061 -2015441916 On 1
+	sbn -815193061 -2015441916 Setting r3
+	sgt r12 r6 r8
+	beqz r12 if2exit
+	s d4 Color 4
+	brne r2 -102 4
+	s d5 SoundAlert 42
+	sleep 1
+	move r4 1
+	if2exit:
+	slt r12 r3 1
+	beqz r12 if3exit
+	s d4 Color 4
+	brne r2 -102 6
+	s d5 SoundAlert 29
+	sleep 1
+	s d5 SoundAlert 40
+	sleep 1
+	move r4 1
+	if3exit:
+	mul r12 r7 1000
+	add r12 r12 1000000
+	sub r11 1 r1
+	mul r12 r12 r11
+	mul r11 8.314462 r9
+	div r3 r12 r11
+	lbn r0 272136332 765508678 TotalMoles Sum
+	lbn r1 1280378227 -1045288362 TotalMoles Sum
+	add r0 r0 r1
+	l r1 d3 TotalMoles
+	add r0 r0 r1
+	div r2 r0 r3
+	abs r2 r2
+	l r3 d0 Setting
+	sbn -815193061 817721657 Mode 1
+	sbn -815193061 817721657 On 1
+	sltz r12 r3
+	beqz r12 if4exit
+	move r3 1
+	if4exit:
+	brne r3 1 3
+	sbn -815193061 817721657 Setting 1
+	jr 2
+	sbn -815193061 817721657 Setting r2
+	l r2 db Setting
+	brne r2 -102 3
+	s d3 On 0
+	s d1 On 0
+	slt r12 r6 r9
+	beqz r12 if5exit
+	s d4 Color 4
+	brne r2 -102 4
+	s d5 SoundAlert 41
+	sleep 1
+	move r4 1
+	if5exit:
+	slt r12 r0 r3
+	seqz r11 r3
+	and r10 r12 r11
+	beqz r10 if6exit
+	s d4 Color 4
+	brne r2 -102 5
+	s d5 SoundAlert 30
+	sleep 1
+	s d5 SoundAlert 40
+	move r4 1
+	if6exit:
+	brne r4 1 5
+	brne r2 -102 4
+	s d4 On 0
+	s db Setting -500
+	j 0
+	brne r2 -102 2
+	s db Setting -200
+	if0exit:
+	j 0

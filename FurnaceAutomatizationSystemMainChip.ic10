@@ -1,0 +1,114 @@
+l r0 d0 Setting
+lbn r1 491845673 -1443172783 Setting Maximum
+seq r15 r0 1
+beqz r15 if0exit
+move r1 0
+s d5 Setting 0
+s d4 On 1
+s d4 Setting -102
+while0:
+sne r14 r1 -200
+beqz r14 while0exit
+l r1 d4 Setting
+seq r13 r1 -500
+beqz r13 if1exit
+s d4 On 0
+j 0
+if1exit:
+j while0
+while0exit:
+move r1 0
+s d4 On 0
+s d1 Setting -102
+s d1 On 1
+while1:
+sne r14 r1 -200
+beqz r14 while1exit
+l r1 d1 Setting
+seq r13 r1 -500
+beqz r13 if2exit
+s d1 On 0
+j 0
+if2exit:
+j while1
+while1exit:
+move r1 0
+sbn 545937711 -1131993479 On 1
+s d2 Setting -102
+s d2 On 1
+while2:
+sne r14 r1 -200
+beqz r14 while2exit
+s d1 Setting -100
+l r1 d2 Setting
+j while2
+while2exit:
+move r1 0
+s d2 On 0
+s d5 On 1
+s d5 Setting -102
+while3:
+sne r14 r1 -200
+beqz r14 while3exit
+s d1 Setting -100
+l r1 d5 Setting
+j while3
+while3exit:
+s d1 On 0
+move r1 0
+s d5 On 0
+s d3 On 1
+s d3 Setting -102
+while4:
+sne r14 r1 -200
+beqz r14 while4exit
+l r1 d3 Setting
+seq r13 r1 -500
+beqz r13 if3exit
+s d3 On 0
+j 0
+if3exit:
+j while4
+while4exit:
+s d3 On 0
+yield
+sbn 545937711 -1131993479 On 0
+sbn 435685051 993965803 On 0
+sbn 435685051 -1504034795 On 0
+if0exit:
+seq r15 r1 1
+beqz r15 if4exit
+s d4 On 1
+s d4 Setting -102
+while5:
+sne r14 r1 -200
+beqz r14 while5exit
+l r1 d4 Setting
+seq r13 r1 -500
+beqz r13 if5exit
+s d4 On 0
+j 0
+if5exit:
+j while5
+while5exit:
+move r1 0
+s d4 On 0
+s d1 On 1
+s d1 Setting -102
+move r1 0
+while6:
+sne r14 r1 -200
+beqz r14 while6exit
+l r1 d1 Setting
+seq r13 r1 -500
+beqz r13 if6exit
+s d1 On 0
+j 0
+if6exit:
+j while6
+while6exit:
+s d1 On 0
+sbn 435685051 993965803 On 0
+sbn 435685051 -1504034795 On 0
+if4exit:
+j 0

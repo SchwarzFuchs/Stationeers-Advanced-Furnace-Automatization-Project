@@ -1,0 +1,120 @@
+l r1 db Setting
+seq r15 r1 -102
+beqz r15 if0exit
+s d2 Color 5
+lbn r2 435685051 -1504034795 Temperature Maximum
+lbn r3 435685051 993965803 Temperature Maximum
+lbn r4 -851746783 -1941351525 Setting Maximum
+lbn r5 -851746783 -823947099 Setting Maximum
+lbn r6 -851746783 -679739121 Setting Maximum
+sub r14 r2 r3
+div r14 100 r14
+mul r13 r3 r2
+mul r12 r4 r6
+div r13 r13 r12
+sub r13 r13 r3
+mul r6 r14 r13
+s d3 Setting r6
+yield
+div r8 r4 14.8028
+mul r14 r5 120.272364
+div r14 r14 r4
+add r9 r14 70
+s d4 On 1
+yield
+move r10 0
+s d3 On 1
+sleep 0.01
+s d3 On 0
+yield
+s d0 SoundAlert 21
+sbn -815193061 -206058721 On 1
+sbn -815193061 -206058721 Mode 1
+sbn -815193061 -206058721 Setting 0
+s d3 On 1
+sgt r14 r5 2000
+beqz r14 if1else
+while0:
+slt r13 r10 r9
+beqz r13 while0exit
+jal CommonPart1
+l r1 d4 Temperature
+sgt r12 r1 r8
+beqz r12 if2exit
+s d1 On 1
+s d5 SettingOutput 0
+s d5 SettingInput 100
+l r1 d5 Temperature
+if2exit:
+l r11 d5 TotalMoles
+add r10 r10 r11
+div r0 r10 r9
+sbn -815193061 -206058721 Setting r0
+mul r6 r0 2.5
+jal CommonPart2
+jal RatioCalc
+j while0
+while0exit:
+j if1exit
+if1else:
+while1:
+slt r13 r10 r9
+beqz r13 while1exit
+jal CommonPart1
+div r0 r10 r9
+sbn -815193061 -206058721 Setting r0
+move r6 4
+l r1 d4 Temperature
+jal CommonPart2
+jal RatioCalc
+j while1
+while1exit:
+if1exit:
+s d3 On 0
+s d2 Color 0
+sbn -815193061 -206058721 On 0
+s db Setting -200
+if0exit:
+j 0
+CommonPart1:
+s d3 On 1
+lbn r1 -1252983604 -881915129 Pressure Maximum
+mul r15 r1 962.17891
+div r0 r15 r4
+l r10 d4 TotalMoles
+sgt r15 r10 100
+beqz r15 if3exit
+sbn -1129453144 -217226766 PressureExternal r8
+sbn -1129453144 -217226766 Mode 0
+sbn -1129453144 -217226766 On 1
+if3exit:
+add r10 r10 r0
+j ra
+CommonPart2:
+sub r15 r1 r4
+div r3 r15 100
+mul r3 r3 1.02
+mul r2 r6 r3
+div r1 r4 r1
+sub r1 r1 r2
+lbn r2 435685051 -1504034795 Temperature Maximum
+lbn r3 435685051 993965803 Temperature Maximum
+j ra
+RatioCalc:
+sltz r15 r1
+beqz r15 if4exit
+move r1 0.001
+if4exit:
+l r7 d3 Setting
+sub r15 r2 r3
+div r15 100 r15
+mul r14 r3 r2
+mul r13 r4 r1
+div r14 r14 r13
+sub r14 r14 r3
+mul r6 r15 r14
+mul r15 r7 19
+add r15 r6 r15
+div r6 r15 20
+s d3 Setting r6
+j ra

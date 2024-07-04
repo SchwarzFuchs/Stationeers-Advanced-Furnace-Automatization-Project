@@ -1,0 +1,120 @@
+s d0 Mode 9
+l r4 d0 Setting
+l r5 d1 Setting
+l r6 d2 Temperature
+sub r6 r6 1
+brne r4 0 11
+move r2 -654790771
+brne r5 0 2
+move r0 920
+brne r5 1 5
+move r0 r6
+sgt r15 r0 100000
+beqz r15 if0exit
+move r0 99000
+if0exit:
+move r1 1100
+brne r4 1 11
+move r2 -82508479
+brne r5 0 2
+move r0 360
+brne r5 1 5
+move r0 r6
+sgt r15 r0 545
+beqz r15 if1exit
+move r0 545
+if1exit:
+move r1 1100
+brne r4 2 11
+move r2 -297990285
+brne r5 0 2
+move r0 1220
+brne r5 1 5
+move r0 r6
+sgt r15 r0 1500
+beqz r15 if2exit
+move r0 1485
+if2exit:
+move r1 18200
+brne r4 3 11
+move r2 502280180
+brne r5 0 2
+move r0 620
+brne r5 1 5
+move r0 r6
+sgt r15 r0 100000
+beqz r15 if3exit
+move r0 99000
+if3exit:
+move r1 850
+brne r4 4 11
+move r2 1058547521
+brne r5 0 2
+move r0 1020
+brne r5 1 5
+move r0 r6
+sgt r15 r0 100000
+beqz r15 if4exit
+move r0 99000
+if4exit:
+move r1 20500
+brne r4 5 11
+move r2 -787796599
+brne r5 0 2
+move r0 620
+brne r5 1 5
+move r0 r6
+sgt r15 r0 100000
+beqz r15 if5exit
+move r0 99000
+if5exit:
+move r1 23700
+brne r4 6 11
+move r2 156348098
+brne r5 0 2
+move r0 420
+brne r5 1 5
+move r0 r6
+sgt r15 r0 790
+beqz r15 if6exit
+move r0 790
+if6exit:
+move r1 51000
+brne r4 7 11
+move r2 -1897868623
+brne r5 0 2
+move r0 1840
+brne r5 1 5
+move r0 r6
+sgt r15 r0 100000
+beqz r15 if7exit
+move r0 99000
+if7exit:
+move r1 10200
+brne r4 8 11
+move r2 412924554
+brne r5 0 2
+move r0 1050
+brne r5 1 5
+move r0 r6
+sgt r15 r0 100000
+beqz r15 if8exit
+move r0 99000
+if8exit:
+move r1 30500
+brne r4 9 11
+move r2 1579842814
+brne r5 0 2
+move r0 965
+brne r5 1 5
+move r0 r6
+sgt r15 r0 990
+beqz r15 if9exit
+move r0 990
+if9exit:
+move r1 25500
+s db Setting r2
+sbn -851746783 -1941351525 Setting r0
+sbn -851746783 -823947099 Setting r1
+sbn -851746783 -74186795 Setting r2
+j 1
