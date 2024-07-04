@@ -62,7 +62,7 @@ Connections:
 | d0 | HotTubeAnalyzer |
 | d1 | ColdTubeAnalyzer |
 | d2 | TemperaturePrioritySwitch |
-| 3 | HotTank* |
+| d3 | HotTank* |
 
 \* Any one of them
 #### Gas Checker IC
