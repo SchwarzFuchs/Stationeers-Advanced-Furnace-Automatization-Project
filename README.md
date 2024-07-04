@@ -62,6 +62,9 @@ Connections:
 | d0 | HotTubeAnalyzer |
 | d1 | ColdTubeAnalyzer |
 | d2 | TemperaturePrioritySwitch |
+| 3 | HotTank* |
+
+\* Any one of them
 #### Gas Checker IC
 Calculates whether the gases meet the conditions of the selected recipe. Not 100% accurate, so it is recommended to have a reserve of 130-150%.
 
