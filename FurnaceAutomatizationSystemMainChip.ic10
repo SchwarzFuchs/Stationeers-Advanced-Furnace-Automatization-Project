@@ -54,6 +54,7 @@ s d1 Setting -100
 l r1 d5 Setting
 j while3
 while3exit:
+s d1 Setting 0
 s d1 On 0
 move r1 0
 s d5 On 0
@@ -66,6 +67,8 @@ l r1 d3 Setting
 seq r13 r1 -500
 beqz r13 if3exit
 s d3 On 0
+sbn 435685051 993965803 On 0
+sbn 435685051 -1504034795 On 0
 j 0
 if3exit:
 j while4
