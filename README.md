@@ -119,6 +119,7 @@ Connections:
 ### Advices
 * Very high pressure on mixer inputs may lead to worse mixing accuracy.
 * The system continuously adjusts the mixer settings, but changes in gas composition and temperature during the smelting process may lead to worse mixing accuracy.
+* You don't need to turn on all ICs, only the Main and Recipe ones.
 ### Error messages from klaxon
 * Fire - you have volatiles in your sytem. Remove or burn it.
 * Temperature low - your hot gas isn't hot enough.
