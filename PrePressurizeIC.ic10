@@ -90,7 +90,7 @@ lbn r0 -1252983604 -881915129 Pressure Maximum
 mul r15 r0 962.17891
 div r1 r15 r4
 l r10 d4 TotalMoles
-brge r10 100 4
+brle r10 100 4
 sbn -1129453144 -217226766 PressureExternal r8
 sbn -1129453144 -217226766 Mode 0
 sbn -1129453144 -217226766 On 1
