@@ -88,6 +88,9 @@ Connections:
 | d2 | Furnace |
 | d3 | LED |
 | d4 | Klaxon |
+| d5 | HotTank* |
+
+\* Any one of them
 #### PrePressurizing IC
 Mixes gases and starts pummping mix to the furnace.
 
