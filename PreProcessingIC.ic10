@@ -22,7 +22,10 @@ slt r13 r4 r2
 beqz r13 while1exit
 s d2 SettingInput 100
 s d2 SettingOutput 0
-s d1 Setting 1
+l r0 d5 Pressure
+div r0 r0 10000
+div r0 2.5 r0
+s d1 Setting r0
 l r1 d2 Temperature
 sgt r12 r1 400
 beqz r12 if1else
