@@ -6,7 +6,7 @@
 * System has some settings for using in different conditions without any code changes.
 ## Setting up
 ### Basic scheme:
-![image](https://github.com/user-attachments/assets/6f392f0c-e74e-4c68-8bf0-e907dbb62d5d)
+![image](https://github.com/user-attachments/assets/feba6023-3609-4dd8-997f-37522928124b)
 ### Name-dependent devices
 ICs are adressing some devices by their names. So you should name them the same as in the table, or if you want to name them your own, replace the hashes in the code.
 | Device       |  Name        | Name HASH |
