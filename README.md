@@ -6,7 +6,7 @@
 * System has some settings for using in different conditions without any code changes.
 ## Setting up
 ### Basic scheme:
-![image](https://github.com/SchwarzFuchs/Stationeers-Advanced-Furnace-Automatization-Project/assets/36659425/8603c3c0-318a-4496-b47d-12640b530e1a)
+![image](https://github.com/user-attachments/assets/6f392f0c-e74e-4c68-8bf0-e907dbb62d5d)
 ### Name-dependent devices
 ICs are adressing some devices by their names. So you should name them the same as in the table, or if you want to name them your own, replace the hashes in the code.
 | Device       |  Name        | Name HASH |
