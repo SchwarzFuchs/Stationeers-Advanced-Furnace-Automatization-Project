@@ -7,7 +7,7 @@ lbn r3 435685051 993965803 Temperature Maximum
 lbn r4 -851746783 -1941351525 Setting Maximum
 lbn r5 -851746783 -823947099 Setting Maximum
 lbn r6 -851746783 -679739121 Setting Maximum
-div r6 r6 0.9
+div r6 r6 0.95
 sub r14 r2 r3
 div r14 100 r14
 mul r13 r3 r2
@@ -16,14 +16,16 @@ div r13 r13 r12
 sub r13 r13 r3
 mul r6 r14 r13
 s d3 Setting r6
+sbn -1129453144 -217226766 Mode 0
 yield
-div r8 r4 14.8028
+div r7 r4 14.8028
+sbn -1129453144 -217226766 PressureExternal r7
 mul r14 r5 120.272364
 div r14 r14 r4
-add r9 r14 70
+add r8 r14 69
 s d4 On 1
 yield
-move r10 0
+move r9 0
 s d3 On 1
 sleep 0.01
 s d3 On 0
@@ -32,15 +34,20 @@ s d0 SoundAlert 21
 sbn -815193061 -206058721 On 1
 sbn -815193061 -206058721 Mode 1
 sbn -815193061 -206058721 Setting 0
-s d3 On 1
-sgt r14 r5 2000
-beqz r14 if1else
 while0:
-slt r13 r10 r9
-beqz r13 while0exit
-jal CommonPart1
-l r1 d4 Temperature
-sgt r12 r0 r8
+slt r14 r9 r8
+beqz r14 while0exit
+lbn r0 -1252983604 -881915129 Pressure Maximum
+mul r13 r0 962.17891
+div r1 r13 r4
+l r9 d4 TotalMoles
+brle r9 100 3
+sbn -1129453144 -217226766 On 1
+add r9 r9 r1
+sgt r13 r5 2000
+beqz r13 if1else
+s d0 SoundAlert 29
+sgt r12 r0 r7
 beqz r12 if2exit
 s d1 On 1
 s d5 SettingOutput 0
@@ -53,73 +60,59 @@ mul r6 r1 19
 add r6 r6 r0
 div r1 r6 20
 if2exit:
-l r11 d5 TotalMoles
-add r10 r10 r11
-div r0 r10 r9
+l r10 d5 TotalMoles
+add r9 r9 r10
+div r0 r9 r8
 sbn -815193061 -206058721 Setting r0
-add r12 r0 0.3
-mul r6 r12 2
-jal CommonPart2
-jal RatioCalc
-j while0
-while0exit:
+mul r6 r0 2
 j if1exit
 if1else:
-while1:
-slt r13 r10 r9
-beqz r13 while1exit
-jal CommonPart1
-div r0 r10 r9
+div r0 r9 r8
 sbn -815193061 -206058721 Setting r0
-add r12 r0 0.1
-mul r6 r12 3.5
-l r1 d4 Temperature
-jal CommonPart2
-jal RatioCalc
-j while1
-while1exit:
+mul r6 r0 2
 if1exit:
+l r1 d4 Temperature
+sub r13 r1 r4
+div r3 r13 25
+mul r2 r6 r3
+div r1 r4 r1
+sub r1 r1 r2
+lbn r2 435685051 -1504034795 Temperature Maximum
+lbn r3 435685051 993965803 Temperature Maximum
+brgt r1 0.85 2
+move r1 0.85
+brlt r1 1.15 2
+move r1 1.15
+lbn r0 -851746783 -679739121 Setting Maximum
+div r0 r0 0.95
+sub r13 r2 r3
+div r13 100 r13
+mul r12 r3 r2
+mul r11 r4 r0
+mul r11 r11 r1
+div r12 r12 r11
+sub r12 r12 r3
+mul r6 r13 r12
+mul r1 r4 r1
+s db Setting r1
+div r13 r3 r2
+mul r13 1.2 r13
+sub r0 r13 5
+brgtz r0 2
+move r0 1
+brgt r5 2000 6
+l r3 d3 Setting
+mul r13 r3 r0
+add r13 r6 r13
+add r12 r0 1
+div r6 r13 r12
+s d3 Setting r6
+s d3 On 1
+j while0
+while0exit:
 s d3 On 0
 s d2 Color 0
 sbn -815193061 -206058721 On 0
 s db Setting -200
 if0exit:
 j 0
-CommonPart1:
-s d3 On 1
-lbn r0 -1252983604 -881915129 Pressure Maximum
-mul r15 r0 962.17891
-div r1 r15 r4
-l r10 d4 TotalMoles
-brle r10 100 4
-sbn -1129453144 -217226766 PressureExternal r8
-sbn -1129453144 -217226766 Mode 0
-sbn -1129453144 -217226766 On 1
-add r10 r10 r1
-j ra
-CommonPart2:
-sub r15 r1 r4
-div r3 r15 50
-mul r2 r6 r3
-div r1 r4 r1
-sub r1 r1 r2
-lbn r2 435685051 -1504034795 Temperature Maximum
-lbn r3 435685051 993965803 Temperature Maximum
-j ra
-RatioCalc:
-brgtz r1 2
-lbn r1 -851746783 -679739121 Setting Maximum
-sub r15 r2 r3
-div r15 100 r15
-mul r14 r3 r2
-mul r13 r4 r1
-div r14 r14 r13
-sub r14 r14 r3
-mul r6 r15 r14
-brgt r5 2000 5
-l r7 d3 Setting
-mul r15 r7 199
-add r15 r6 r15
-div r6 r15 200
-s d3 Setting r6
-j ra
