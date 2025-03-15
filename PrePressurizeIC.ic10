@@ -46,15 +46,13 @@ sbn -1129453144 -217226766 On 1
 add r9 r9 r1
 sgt r13 r5 2000
 beqz r13 if1else
-s d0 SoundAlert 29
 sgt r12 r0 r7
 beqz r12 if2exit
 s d1 On 1
 s d5 SettingOutput 0
 s d5 SettingInput 100
 l r1 d5 Temperature
-brnez r1 6
-breqz r1 5
+brnez r1 5
 l r0 d4 Temperature
 mul r6 r1 19
 add r6 r6 r0
@@ -100,7 +98,6 @@ mul r13 1.2 r13
 sub r0 r13 5
 brgtz r0 2
 move r0 1
-brgt r5 2000 6
 l r3 d3 Setting
 mul r13 r3 r0
 add r13 r6 r13
