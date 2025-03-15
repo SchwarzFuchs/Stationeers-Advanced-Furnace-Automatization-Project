@@ -7,6 +7,7 @@ lbn r3 435685051 993965803 Temperature Maximum
 lbn r4 -851746783 -1941351525 Setting Maximum
 lbn r5 -851746783 -823947099 Setting Maximum
 lbn r6 -851746783 -679739121 Setting Maximum
+div r6 r6 0.9
 sub r14 r2 r3
 div r14 100 r14
 mul r13 r3 r2
@@ -107,7 +108,7 @@ lbn r3 435685051 993965803 Temperature Maximum
 j ra
 RatioCalc:
 brgtz r1 2
-move r1 0.001
+lbn r1 -851746783 -679739121 Setting Maximum
 sub r15 r2 r3
 div r15 100 r15
 mul r14 r3 r2
@@ -117,8 +118,8 @@ sub r14 r14 r3
 mul r6 r15 r14
 brgt r5 2000 5
 l r7 d3 Setting
-mul r15 r7 29
+mul r15 r7 199
 add r15 r6 r15
-div r6 r15 30
+div r6 r15 200
 s d3 Setting r6
 j ra
