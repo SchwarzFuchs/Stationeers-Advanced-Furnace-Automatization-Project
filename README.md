@@ -32,7 +32,8 @@ ICs are adressing some devices by their names. So you should name them the same 
 \* System supports any amount of insulated tanks of any size
 ### ICs and their connections
 #### Recipe Chip
-Allows you to select a recipe and write its parameters to memory.
+Allows you to select a recipe and write its parameters to memory. There're 3 versions of code for it, one is universal and the two other ones are optimised for Venus and Vulcan accordingly.
+
 Connections: 
 | dN      |  Device        |
 | ------------ | ------------ |
