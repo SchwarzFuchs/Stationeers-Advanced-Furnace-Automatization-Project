@@ -79,7 +79,7 @@ Connections:
 | d4 | LED |
 | d5 | Klaxon |
 #### PreProcessing IC
-Processes ore and ingots.
+Processes ore and ingots. Imporant: system won't accept additional resourses after the end of PreProcessing stage.
 
 Connections:  
 | dN      |  Device        |
