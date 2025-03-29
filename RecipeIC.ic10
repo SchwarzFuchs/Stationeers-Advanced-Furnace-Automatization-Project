@@ -1,4 +1,11 @@
 s d0 Mode 9
+l r10 d3 Lock
+brne r10 1 3
+l r11 d0 Setting
+l r10 d3 Lock
+brne r10 1 3
+s d0 Setting r11
+jr -3
 l r4 d0 Setting
 l r5 d1 Setting
 l r6 d2 Temperature

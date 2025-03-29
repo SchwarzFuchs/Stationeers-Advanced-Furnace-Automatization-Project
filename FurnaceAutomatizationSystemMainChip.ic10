@@ -1,7 +1,21 @@
+sbn 545937711 -1131993479 Lock 0
+sbn 435685051 -1504034795 Lock 0
+sbn 435685051 993965803 Lock 0
+sbn 1310794736 454545836 Lock 0
+sbn 2104106366 1482292933 Lock 0
+sbn 435685051 -2109432728 Lock 0
+s d0 Lock 0
 l r0 d0 Setting
 lbn r1 491845673 -1443172783 Setting Maximum
 seq r15 r0 1
 beqz r15 if0exit
+sbn 435685051 -1504034795 Lock 1
+s d0 Lock 1
+sbn 545937711 -1131993479 Lock 1
+sbn 435685051 993965803 Lock 1
+sbn 1310794736 454545836 Lock 1
+sbn 2104106366 1482292933 Lock 1
+sbn 435685051 -2109432728 Lock 1
 move r1 0
 s d5 Setting 0
 s d4 On 1
@@ -10,11 +24,9 @@ while0:
 sne r14 r1 -200
 beqz r14 while0exit
 l r1 d4 Setting
-seq r13 r1 -500
-beqz r13 if1exit
+brne r1 -500 3
 s d4 On 0
 j 0
-if1exit:
 j while0
 while0exit:
 move r1 0
@@ -25,11 +37,9 @@ while1:
 sne r14 r1 -200
 beqz r14 while1exit
 l r1 d1 Setting
-seq r13 r1 -500
-beqz r13 if2exit
+brne r1 -500 3
 s d1 On 0
 j 0
-if2exit:
 j while1
 while1exit:
 move r1 0
@@ -64,13 +74,11 @@ while4:
 sne r14 r1 -200
 beqz r14 while4exit
 l r1 d3 Setting
-seq r13 r1 -500
-beqz r13 if3exit
+brne r1 -500 5
 s d3 On 0
 sbn 435685051 993965803 On 0
 sbn 435685051 -1504034795 On 0
 j 0
-if3exit:
 j while4
 while4exit:
 s d3 On 0
@@ -78,20 +86,20 @@ yield
 sbn 545937711 -1131993479 On 0
 sbn 435685051 993965803 On 0
 sbn 435685051 -1504034795 On 0
+j 0
 if0exit:
 seq r15 r1 1
 beqz r15 if4exit
+s d0 Lock 1
 s d4 On 1
 s d4 Setting -102
 while5:
 sne r14 r1 -200
 beqz r14 while5exit
 l r1 d4 Setting
-seq r13 r1 -500
-beqz r13 if5exit
+brne r1 -500 3
 s d4 On 0
 j 0
-if5exit:
 j while5
 while5exit:
 move r1 0
@@ -114,4 +122,4 @@ s d1 On 0
 sbn 435685051 993965803 On 0
 sbn 435685051 -1504034795 On 0
 if4exit:
-j 0
+j 7
