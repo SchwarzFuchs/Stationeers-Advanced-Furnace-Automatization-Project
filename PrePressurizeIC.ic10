@@ -7,7 +7,7 @@ lbn r3 435685051 993965803 Temperature Maximum
 lbn r4 -851746783 -1941351525 Setting Maximum
 lbn r5 -851746783 -823947099 Setting Maximum
 lbn r6 -851746783 -679739121 Setting Maximum
-div r6 r6 0.9
+div r6 r6 0.91
 sub r14 r2 r3
 div r14 100 r14
 mul r13 r3 r2
@@ -17,14 +17,14 @@ sub r13 r13 r3
 mul r6 r14 r13
 s d3 Setting r6
 sbn -1129453144 -217226766 Mode 0
+s d4 On 1
 yield
 div r7 r4 14.8028
 sbn -1129453144 -217226766 PressureExternal r7
+mul r7 r7 0.995
 mul r14 r5 120.272364
 div r14 r14 r4
 add r8 r14 69
-s d4 On 1
-yield
 move r9 0
 s d3 On 1
 sleep 0.01
@@ -46,8 +46,9 @@ sbn -1129453144 -217226766 On 1
 add r9 r9 r1
 sgt r13 r5 2000
 beqz r13 if1exit
-sgt r12 r0 r7
+sge r12 r0 r7
 beqz r12 if2exit
+sbn -1129453144 -217226766 On 0
 s d1 On 1
 s d5 SettingOutput 0
 s d5 SettingInput 100
@@ -77,7 +78,7 @@ move r1 0.85
 brlt r1 1.15 2
 move r1 1.15
 lbn r0 -851746783 -679739121 Setting Maximum
-div r0 r0 0.9
+div r0 r0 0.91
 sub r13 r2 r3
 div r13 100 r13
 mul r12 r3 r2
