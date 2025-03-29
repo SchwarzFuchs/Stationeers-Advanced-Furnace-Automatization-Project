@@ -1,14 +1,15 @@
 sbn 545937711 -1131993479 Lock 0
 sbn 435685051 -1504034795 Lock 0
+sbn 435685051 -2109432728 Lock 0
 sbn 435685051 993965803 Lock 0
 sbn 1310794736 454545836 Lock 0
 sbn 2104106366 1482292933 Lock 0
-sbn 435685051 -2109432728 Lock 0
 s d0 Lock 0
 l r0 d0 Setting
 lbn r1 491845673 -1443172783 Setting Maximum
-seq r15 r0 1
-beqz r15 if0exit
+s db Setting 0
+breq r0 1 2
+j 95
 sbn 435685051 -1504034795 Lock 1
 s d0 Lock 1
 sbn 545937711 -1131993479 Lock 1
@@ -21,8 +22,8 @@ s d5 Setting 0
 s d4 On 1
 s d4 Setting -102
 while0:
-sne r14 r1 -200
-beqz r14 while0exit
+sne r15 r1 -200
+beqz r15 while0exit
 l r1 d4 Setting
 brne r1 -500 3
 s d4 On 0
@@ -34,8 +35,8 @@ s d4 On 0
 s d1 Setting -102
 s d1 On 1
 while1:
-sne r14 r1 -200
-beqz r14 while1exit
+sne r15 r1 -200
+beqz r15 while1exit
 l r1 d1 Setting
 brne r1 -500 3
 s d1 On 0
@@ -47,32 +48,37 @@ sbn 545937711 -1131993479 On 1
 s d2 Setting -102
 s d2 On 1
 while2:
-sne r14 r1 -200
-beqz r14 while2exit
+sne r15 r1 -200
+beqz r15 while2exit
 s d1 Setting -100
 l r1 d2 Setting
 j while2
 while2exit:
 move r1 0
 s d2 On 0
+lbn r1 -815193061 -2015441916 Setting Minimum
+brgt r1 1 5
+s d1 On 0
+s d1 Setting 0
+s db Setting -500 
+j 8
 s d5 On 1
 s d5 Setting -102
 while3:
-sne r14 r1 -200
-beqz r14 while3exit
+sne r15 r1 -200
+beqz r15 while3exit
 s d1 Setting -100
 l r1 d5 Setting
 j while3
 while3exit:
-s d1 Setting 0
 s d1 On 0
 move r1 0
 s d5 On 0
 s d3 On 1
 s d3 Setting -102
 while4:
-sne r14 r1 -200
-beqz r14 while4exit
+sne r15 r1 -200
+beqz r15 while4exit
 l r1 d3 Setting
 brne r1 -500 5
 s d3 On 0
@@ -87,15 +93,14 @@ sbn 545937711 -1131993479 On 0
 sbn 435685051 993965803 On 0
 sbn 435685051 -1504034795 On 0
 j 0
-if0exit:
-seq r15 r1 1
-beqz r15 if4exit
+breq r1 1 2
+j 7
 s d0 Lock 1
 s d4 On 1
 s d4 Setting -102
 while5:
-sne r14 r1 -200
-beqz r14 while5exit
+sne r15 r1 -200
+beqz r15 while5exit
 l r1 d4 Setting
 brne r1 -500 3
 s d4 On 0
@@ -108,18 +113,15 @@ s d1 On 1
 s d1 Setting -102
 move r1 0
 while6:
-sne r14 r1 -200
-beqz r14 while6exit
+sne r15 r1 -200
+beqz r15 while6exit
 l r1 d1 Setting
-seq r13 r1 -500
-beqz r13 if6exit
+brne r1 -500 3
 s d1 On 0
 j 0
-if6exit:
 j while6
 while6exit:
 s d1 On 0
 sbn 435685051 993965803 On 0
 sbn 435685051 -1504034795 On 0
-if4exit:
-j 7
+j 0
