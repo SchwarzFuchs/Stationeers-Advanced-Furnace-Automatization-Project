@@ -34,7 +34,7 @@ jal Cleanup
 s db Setting -500
 if2exit:
 if0exit:
-jr 46
+jr 0
 Cleanup:
 lbn r2 -1252983604 -881915129 Pressure Maximum
 sbn -1129453144 -217226766 PressureInternal 45000
