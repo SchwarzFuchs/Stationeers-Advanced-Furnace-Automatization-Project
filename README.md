@@ -71,7 +71,7 @@ Connections:
 
 \* Any one of them
 #### Gas Checker IC
-Calculates whether the gases meet the conditions of the selected recipe. Not 100% accurate, so it is recommended to have a reserve of 130-150%.
+Calculates whether the gases meet the conditions of the selected recipe. Not 100% accurate, so it is recommended to have a reserve of 130-150% (percentages are shown on displays). Especially for the hot gas and especially when you use a lot of ingridients at once.
 
 Connections: 
 | dN      |  Device        |
@@ -126,6 +126,7 @@ Connections:
 * Temperature Priority Switch  - When set to 1, the system will use as little cold gas as possible. Use it when you are short on cold gas.
 ### Advices
 * Very high pressure on mixer inputs may lead to worse mixing accuracy.
+* Optimal buffer pipe volume — 350-450 L. Decrease to 150-250 if you have high pressure on mixer inputs, it will slow down the mixer and improve accuracy. 
 * The system continuously adjusts the mixer settings, but changes in gas composition and temperature during the smelting process may lead to worse mixing accuracy.
 * Don't copy scripts from sample world. They may not contain all the latest improvements over the code in the repository.
 * You don't need to turn on all ICs, only the Main and Recipe ones.
