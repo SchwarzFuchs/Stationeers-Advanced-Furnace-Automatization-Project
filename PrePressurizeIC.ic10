@@ -19,10 +19,10 @@ s d3 Setting r6
 sbn -1129453144 -217226766 Mode 0
 s d4 On 1
 yield
-div r7 r4 14.8028
+mul r7 0.071708 r4
 sbn -1129453144 -217226766 PressureExternal r7
 mul r7 r7 0.995
-mul r14 r5 120.272364
+mul r14 120.279 r5
 div r14 r14 r4
 add r8 r14 69
 move r9 0
@@ -38,10 +38,12 @@ while0:
 slt r14 r9 r8
 beqz r14 while0exit
 lbn r0 -1252983604 -881915129 Pressure Maximum
-mul r13 r0 962.17891
-div r1 r13 r4
+mul r13 r0 961.497
+add r12 r4 1
+div r1 r13 r12
+s db Setting r1
 l r9 d4 TotalMoles
-brle r9 100 3
+brle r9 100 2
 sbn -1129453144 -217226766 On 1
 add r9 r9 r1
 sgt r13 r5 2000
@@ -88,7 +90,6 @@ div r12 r12 r11
 sub r12 r12 r3
 mul r6 r13 r12
 mul r1 r4 r1
-s db Setting r1
 div r13 r3 r2
 mul r13 1.2 r13
 sub r0 r13 5

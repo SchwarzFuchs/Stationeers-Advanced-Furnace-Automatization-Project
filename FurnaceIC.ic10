@@ -34,7 +34,7 @@ jal Cleanup
 s db Setting -500
 if2exit:
 if0exit:
-j 0
+jr 46
 Cleanup:
 lbn r2 -1252983604 -881915129 Pressure Maximum
 sbn -1129453144 -217226766 PressureInternal 45000
@@ -63,7 +63,7 @@ beqz r10 if4exit
 s d1 On 0
 if4exit:
 if3exit:
-lbn r2 -1252983604 -881915129 Pressure Maximum
+lbn r2 -1252983604 -881915129 Temperature Maximum
 j while1
 while1exit:
 s d1 On 0
