@@ -15,6 +15,9 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Advanced Furnace | Advanced Furnace | -1131993479 |
 | Pipe Analyzer | Hot Pipe Analyzer | 993965803 |
 | Pipe Analyzer | Cold Pipe Analyzer | -1504034795 |
+| Pipe Analyzer | Hot/Cold Mix Pipe Analyzer | -2109432728 |
+| Turbo Volume Pump | Hot/Cold Mix Pump | 454545836 |
+| Gas Mixer | Hot/Cold Gas Mixer | 1482292933 |
 | Display (Small) | Hot Gas Satisfaction | -2015441916 |
 | Display (Small) | Cold Gas Satisfaction | 817721657 |
 | Display (Small) | Pressurize Status | -206058721 |
@@ -40,6 +43,7 @@ Connections:
 | d0 | Dial |
 | d1 | TemperaturePrioritySwitch |
 | d2 | HotTank* |
+| d3 | Start Button |
 
 \* Any one of them
 #### Main Chip
