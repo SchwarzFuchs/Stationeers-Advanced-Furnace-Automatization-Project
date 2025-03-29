@@ -6,7 +6,7 @@
 * System has some settings for using in different conditions without any code changes.
 ## Setting up
 ### Basic scheme:
-![image](https://github.com/user-attachments/assets/feba6023-3609-4dd8-997f-37522928124b)
+![image](https://github.com/user-attachments/assets/23fee90e-5a4a-4ee0-8a14-a768f6438fb7)
 ### Name-dependent devices
 ICs are adressing some devices by their names. So you should name them the same as in the table, or if you want to name them your own, replace the hashes in the code.
 | Device       |  Name        | Name HASH |
@@ -15,6 +15,9 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Advanced Furnace | Advanced Furnace | -1131993479 |
 | Pipe Analyzer | Hot Pipe Analyzer | 993965803 |
 | Pipe Analyzer | Cold Pipe Analyzer | -1504034795 |
+| Pipe Analyzer | Hot/Cold Mix Pipe Analyzer | -2109432728 |
+| Turbo Volume Pump | Hot/Cold Mix Pump | 454545836 |
+| Gas Mixer | Hot/Cold Gas Mixer | 1482292933 |
 | Display (Small) | Hot Gas Satisfaction | -2015441916 |
 | Display (Small) | Cold Gas Satisfaction | 817721657 |
 | Display (Small) | Pressurize Status | -206058721 |
@@ -40,6 +43,7 @@ Connections:
 | d0 | Dial |
 | d1 | TemperaturePrioritySwitch |
 | d2 | HotTank* |
+| d3 | Start Button |
 
 \* Any one of them
 #### Main Chip
@@ -67,7 +71,7 @@ Connections:
 
 \* Any one of them
 #### Gas Checker IC
-Calculates whether the gases meet the conditions of the selected recipe. Not 100% accurate, so it is recommended to have a reserve of 130-150%.
+Calculates whether the gases meet the conditions of the selected recipe. Not 100% accurate, so it is recommended to have a reserve of 130-150% (percentages are shown on displays). Especially for the hot gas and especially when you use a lot of ingridients at once.
 
 Connections: 
 | dN      |  Device        |
@@ -79,7 +83,7 @@ Connections:
 | d4 | LED |
 | d5 | Klaxon |
 #### PreProcessing IC
-Processes ore and ingots.
+Processes ore and ingots. Imporant: system won't accept additional resourses after the end of PreProcessing stage.
 
 Connections:  
 | dN      |  Device        |
@@ -122,6 +126,7 @@ Connections:
 * Temperature Priority Switch  - When set to 1, the system will use as little cold gas as possible. Use it when you are short on cold gas.
 ### Advices
 * Very high pressure on mixer inputs may lead to worse mixing accuracy.
+* Optimal buffer pipe volume — 350-450 L. Decrease to 150-250 if you have high pressure on mixer inputs, it will slow down the mixer and improve accuracy. 
 * The system continuously adjusts the mixer settings, but changes in gas composition and temperature during the smelting process may lead to worse mixing accuracy.
 * Don't copy scripts from sample world. They may not contain all the latest improvements over the code in the repository.
 * You don't need to turn on all ICs, only the Main and Recipe ones.

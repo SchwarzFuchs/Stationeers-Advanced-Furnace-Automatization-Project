@@ -30,14 +30,12 @@ sne r14 r1 1
 beqz r14 if2exit
 s d2 Color 4
 s d0 SoundAlert 24
-sleep 2
 jal Cleanup
 s db Setting -500
 if2exit:
 if0exit:
 j 0
 Cleanup:
-s d0 SoundAlert 20
 lbn r2 -1252983604 -881915129 Pressure Maximum
 sbn -1129453144 -217226766 PressureInternal 45000
 sbn -1129453144 -217226766 Mode 1
@@ -45,17 +43,26 @@ sbn -1129453144 -217226766 On 1
 l r1 d4 Pressure
 l r0 d3 Pressure
 s d4 SettingOutput 100
+s d1 On 1
+sleep 1.5
+s d0 SoundAlert 20
 while1:
-sgtz r15 r1
-sgtz r14 r0
+sgt r15 r1 0.2
+sgt r14 r0 0.2
 sgtz r13 r2
 or r12 r15 r14
 or r12 r12 r13
 beqz r12 while1exit
-s d1 On 1
-sleep 0.5
 l r1 d4 Pressure
 l r0 d3 Pressure
+seqz r11 r2
+beqz r11 if3exit
+sbn -1129453144 -217226766 On 0
+slt r10 r0 0.2
+beqz r10 if4exit
+s d1 On 0
+if4exit:
+if3exit:
 lbn r2 -1252983604 -881915129 Pressure Maximum
 j while1
 while1exit:
@@ -66,4 +73,5 @@ sbn -1129453144 -217226766 On 0
 sbn -815193061 -2015441916 On 0
 sbn -815193061 817721657 On 0
 s d2 On 0
+s d0 SoundAlert 0
 j ra
