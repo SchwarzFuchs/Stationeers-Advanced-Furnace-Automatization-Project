@@ -7,9 +7,8 @@ sbn 2104106366 1482292933 Lock 0
 s d0 Lock 0
 l r0 d0 Setting
 lbn r1 491845673 -1443172783 Setting Maximum
-s db Setting 0
 breq r0 1 2
-j 95
+j 86
 sbn 435685051 -1504034795 Lock 1
 s d0 Lock 1
 sbn 545937711 -1131993479 Lock 1
@@ -21,72 +20,68 @@ move r1 0
 s d5 Setting 0
 s d4 On 1
 s d4 Setting -102
-while0:
-sne r15 r1 -200
-beqz r15 while0exit
+breq r1 -200 6
 l r1 d4 Setting
 brne r1 -500 3
 s d4 On 0
 j 0
-j while0
-while0exit:
+jr -5
 move r1 0
 s d4 On 0
 s d1 Setting -102
 s d1 On 1
-while1:
-sne r15 r1 -200
-beqz r15 while1exit
+breq r1 -200 6
 l r1 d1 Setting
 brne r1 -500 3
 s d1 On 0
 j 0
-j while1
-while1exit:
+jr -5
 move r1 0
 sbn 545937711 -1131993479 On 1
 s d2 Setting -102
 s d2 On 1
-while2:
-sne r15 r1 -200
-beqz r15 while2exit
+breq r1 -201 5
+breq r1 -200 4
 s d1 Setting -100
 l r1 d2 Setting
-j while2
-while2exit:
+jr -4
 move r1 0
-s d2 On 0
 lbn r1 -815193061 -2015441916 Setting Minimum
-brgt r1 1 5
+brgt r1 1 9
 s d1 On 0
 s d1 Setting 0
-s db Setting -500 
+s db Setting -500
+breq r1 -200 3
+l r1 d2 Setting
+jr -2
+s d2 On 0
 j 8
+move r1 0
+s d5 Setting -100
 s d5 On 1
+breq r0 -200 3
+l r0 d2 Setting
+jr -2
 s d5 Setting -102
-while3:
-sne r15 r1 -200
-beqz r15 while3exit
+s d2 On 0
+breq r1 -200 4
 s d1 Setting -100
 l r1 d5 Setting
-j while3
-while3exit:
+jr -3
 s d1 On 0
 move r1 0
 s d5 On 0
 s d3 On 1
 s d3 Setting -102
-while4:
-sne r15 r1 -200
-beqz r15 while4exit
+breq r1 -200 9
 l r1 d3 Setting
-brne r1 -500 5
+brne r1 -500 6
 s d3 On 0
 sbn 435685051 993965803 On 0
 sbn 435685051 -1504034795 On 0
+s d2 On 0
 j 0
-j while4
-while4exit:
+jr -8
 s d3 On 0
 yield
 sbn 545937711 -1131993479 On 0
@@ -98,29 +93,23 @@ j 7
 s d0 Lock 1
 s d4 On 1
 s d4 Setting -102
-while5:
-sne r15 r1 -200
-beqz r15 while5exit
+breq r1 -200 6
 l r1 d4 Setting
 brne r1 -500 3
 s d4 On 0
 j 0
-j while5
-while5exit:
+jr -5
 move r1 0
 s d4 On 0
 s d1 On 1
 s d1 Setting -102
 move r1 0
-while6:
-sne r15 r1 -200
-beqz r15 while6exit
+breq r1 -200 6
 l r1 d1 Setting
 brne r1 -500 3
 s d1 On 0
 j 0
-j while6
-while6exit:
+jr -5
 s d1 On 0
 sbn 435685051 993965803 On 0
 sbn 435685051 -1504034795 On 0

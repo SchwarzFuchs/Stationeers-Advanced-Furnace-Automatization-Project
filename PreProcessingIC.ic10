@@ -1,6 +1,6 @@
 l r0 db Setting
-seq r15 r0 -102
-beqz r15 if0exit
+breq r0 -102 2
+j 0
 s d3 Color 5
 s d3 On 1
 s d2 On 1
@@ -8,10 +8,12 @@ s d2 Open 0
 move r2 0
 s d0 Setting 1
 ls r3 d0 0 Quantity
+l r1 d2 Reagents
+add r2 r2 r1
 s d2 SettingOutput 0
 while0:
-sgtz r14 r3
-beqz r14 while0exit
+sgtz r15 r3
+beqz r15 while0exit
 add r2 r2 r3
 s db Setting r2
 s d0 Open 1
@@ -19,8 +21,8 @@ yield
 s d0 Open 0
 l r4 d2 Reagents
 while1:
-slt r13 r4 r2
-beqz r13 while1exit
+slt r14 r4 r2
+beqz r14 while1exit
 s d2 SettingInput 100
 l r0 d5 Pressure
 div r0 r0 10000
@@ -28,22 +30,22 @@ div r0 4 r0
 s d1 Setting r0
 l r1 d2 Temperature
 l r5 d2 Pressure
-sgt r12 r5 50000
-beqz r12 if1else
+sgt r13 r5 50000
+beqz r13 if0else
 s d2 SettingOutput 10
+j if0exit
+if0else:
+s d2 SettingOutput 0
+if0exit:
+sgt r13 r1 425
+sgt r12 r5 150
+and r11 r13 r12
+beqz r11 if1else
+s d1 On 0
 j if1exit
 if1else:
-s d2 SettingOutput 0
-if1exit:
-sgt r12 r1 425
-sgt r11 r5 150
-and r10 r12 r11
-beqz r10 if2else
-s d1 On 0
-j if2exit
-if2else:
 s d1 On 1
-if2exit:
+if1exit:
 l r4 d2 Reagents
 j while1
 while1exit:
@@ -55,11 +57,11 @@ while0exit:
 l r0 d2 Pressure
 s d3 Color 0
 s d4 SoundAlert 20
+s db Setting -201
 while2:
-sgt r14 r0 0.1
-beqz r14 while2exit
+sgt r15 r0 0.1
+beqz r15 while2exit
 s d2 SettingOutput 100
-yield
 l r0 d2 Pressure
 j while2
 while2exit:
@@ -67,5 +69,4 @@ s d2 SettingInput 0
 s d2 SettingOutput 0
 s d2 On 1
 s db Setting -200
-if0exit:
 j 0
