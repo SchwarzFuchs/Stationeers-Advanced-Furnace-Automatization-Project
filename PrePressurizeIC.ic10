@@ -27,14 +27,11 @@ mul r15 120.279 r5
 div r15 r15 r4
 add r8 r15 69
 move r9 0
-s d3 On 1
-sleep 0.01
-s d3 On 0
-yield
 s d0 SoundAlert 21
 sbn -815193061 -206058721 On 1
 sbn -815193061 -206058721 Mode 1
 sbn -815193061 -206058721 Setting 0
+s d3 On 1
 mainCycleStart:
 bge r9 r8 mainCycleEnd
 l r9 d4 TotalMoles
@@ -47,10 +44,8 @@ mul r15 r0 961.497
 div r1 r15 r4
 add r9 r9 r1
 l r6 db Setting
-sge r15 r0 r7
-seq r14 r6 -102
-and r13 r15 r14
-beqz r13 if0else
+ble r0 r7 else1
+bne r6 -102 else1
 sbn -1129453144 -217226766 On 0
 s d1 On 1
 s d5 SettingOutput 0
@@ -58,13 +53,13 @@ s d5 SettingInput 100
 l r1 d5 Temperature
 breqz r1 5
 l r0 d4 Temperature
-mul r12 r1 9
-add r6 r12 r0
+mul r15 r1 9
+add r6 r15 r0
 div r1 r6 10
 l r10 d5 TotalMoles
 add r9 r9 r10
-j if0exit
-if0else:
+j end1
+else1:
 l r6 d4 Pressure
 brlt r6 45000 5
 s d3 On 0
@@ -72,7 +67,7 @@ breq r1 -102 3
 l r1 db Setting
 jr -2
 s d3 On 1
-if0exit:
+end1:
 div r0 r9 r8
 sbn -815193061 -206058721 Setting r0
 mul r6 r0 2
@@ -114,9 +109,19 @@ j mainCycleStart
 mainCycleEnd:
 s d3 On 0
 s d2 Color 0
-breq r1 -102 3
+breq r1 -102 8
 l r1 db Setting
+l r6 d5 Pressure
+brlt r6 1 3
+l r6 d5 Pressure
 jr -2
+sbn -1129453144 -217226766 On 1
+jr -7
+lbn r1 -1129453144 -217226766 On Minimum
+brne r1 0 4
+lbn r1 -1129453144 -217226766 On Minimum
+sbn -1129453144 -217226766 On 1
+sleep 1
 sbn -815193061 -206058721 On 0
 s db Setting -200
 j 0
