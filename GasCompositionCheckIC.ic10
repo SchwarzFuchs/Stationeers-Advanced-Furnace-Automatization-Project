@@ -1,54 +1,57 @@
 l r0 db Setting
-seq r15 r0 -102
-beqz r15 if0exit
+breq r0 -102 2
+j 0
 s d0 On 1
 s d1 On 1
 yield
 move r1 0
 l r0 d1 RatioOxygen
-mul r1 r0 21.2
+mul r1 r0 21.1
 l r0 d1 RatioNitrogen
-mul r14 r0 20.6
-add r1 r1 r14
+mul r15 r0 20.6
+add r1 r1 r15
 l r0 d1 RatioCarbonDioxide
-mul r14 r0 28.2
-add r1 r1 r14
+mul r15 r0 28.2
+add r1 r1 r15
 l r0 d1 RatioPollutant
-mul r14 r0 24.8
-add r1 r1 r14
+mul r15 r0 24.8
+add r1 r1 r15
 l r0 d1 RatioNitrousOxide
-mul r14 r0 37.2
-add r1 r1 r14
+mul r15 r0 37.2
+add r1 r1 r15
 move r2 0
 l r0 d0 RatioOxygen
-mul r2 r0 21.2
+mul r2 r0 21.1
 l r0 d0 RatioNitrogen
-mul r14 r0 20.6
-add r2 r2 r14
+mul r15 r0 20.6
+add r2 r2 r15
 l r0 d0 RatioCarbonDioxide
-mul r14 r0 28.2
-add r2 r2 r14
+mul r15 r0 28.2
+add r2 r2 r15
 l r0 d0 RatioPollutant
-mul r14 r0 24.8
-add r2 r2 r14
+mul r15 r0 24.8
+add r2 r2 r15
 l r0 d0 RatioNitrousOxide
-mul r14 r0 37.2
-add r2 r2 r14
+mul r15 r0 37.2
+add r2 r2 r15
 l r0 d2 Setting
 lbn r3 -851746783 -1941351525 Setting Maximum
 l r4 d3 Temperature
+sub r4 r4 1
 sub r3 r4 r3
 abs r3 r3
-seqz r14 r0
-seq r13 r0 1
-sgt r12 r3 0.1
-or r11 r14 r13
-and r11 r11 r12
-beqz r11 if1exit
+seq r15 r0 1
+sgt r14 r3 0.01
+seqz r13 r0
+and r12 r15 r14
+or r12 r12 r13
+beqz r12 if0else
 div r0 r1 r2
-if1exit:
+j if0exit
+if0else:
+move r0 100
+if0exit:
 sbn -851746783 -679739121 Setting r0
 yield
 s db Setting -200
-if0exit:
 j 0
