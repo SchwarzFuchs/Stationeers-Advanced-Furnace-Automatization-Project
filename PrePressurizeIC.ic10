@@ -121,7 +121,7 @@ lbn r1 -1129453144 -217226766 On Minimum
 brne r1 0 4
 lbn r1 -1129453144 -217226766 On Minimum
 sbn -1129453144 -217226766 On 1
-sleep 1
+sleep 6
 sbn -815193061 -206058721 On 0
 s db Setting -200
 j 0
