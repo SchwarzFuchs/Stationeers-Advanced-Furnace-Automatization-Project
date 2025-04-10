@@ -130,7 +130,7 @@ Connections:
 * The system continuously adjusts the mixer settings, but changes in gas composition and temperature during the smelting process may lead to worse mixing accuracy.
 * Don't copy scripts from sample world. They may not contain all the latest improvements over the code in the repository.
 * You don't need to turn on all ICs, only the Main and Recipe ones.
-* You can connect PreProcessing pump to the cold pipe if your "cold" gas hotter than 430K. Or to any other pipe that is hot enough, the furnace waste one for example. Don't forget to change the tank on the IC dials in this case.
+* You can connect PreProcessing pump to the cold pipe if your "cold" gas is hotter than 430K. Or to the any other pipe that is hot enough, the furnace waste one for example. Don't forget to change the tank on the IC dials in this case.
 ### Error messages from klaxon
 * Fire - you have volatiles in your pipes/tanks. Remove or burn it.
 * Temperature low - your hot gas isn't hot enough.
