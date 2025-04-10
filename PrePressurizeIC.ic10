@@ -117,9 +117,9 @@ l r6 d5 Pressure
 jr -2
 sbn -1129453144 -217226766 On 1
 jr -7
-lbn r1 -1129453144 -217226766 On Minimum
-brne r1 0 4
-lbn r1 -1129453144 -217226766 On Minimum
+lbn r1 -1252983604 -881915129 Pressure Maximum
+brgt r1 r7 4
+lbn r1 -1252983604 -881915129 Pressure Maximum
 sbn -1129453144 -217226766 On 1
 sleep 6
 sbn -815193061 -206058721 On 0
