@@ -59,7 +59,7 @@ Connections:
 | d4 | GasCompositionCheckIC |
 | d5 | PrePressurizeIC |  
 #### Gas Composition Checker IC
-Computes the composition of the gases in the tanks to determine the average number of joules per mole for more accurate calculations.
+Computes the composition of the gases in the tanks to determine the average number of joules per mole for the more accurate calculations.
 
 Connections: 
 | dN      |  Device        |
@@ -89,7 +89,7 @@ Connections:
 | dN      |  Device        |
 | ------------ | ------------ |
 | d0 | Valve |
-| d1 | Pump |
+| d1 | PreProcessingPump |
 | d2 | Furnace |
 | d3 | LED |
 | d4 | Klaxon |
