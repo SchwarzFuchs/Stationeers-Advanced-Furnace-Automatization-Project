@@ -109,14 +109,11 @@ j mainCycleStart
 mainCycleEnd:
 s d3 On 0
 s d2 Color 0
-breq r1 -102 8
+breq r1 -102 4
 l r1 db Setting
 l r6 d5 Pressure
-brlt r6 1 3
-l r6 d5 Pressure
-jr -2
+jr -3
 sbn -1129453144 -217226766 On 1
-jr -7
 lbn r1 -1252983604 -881915129 Pressure Maximum
 brgt r1 r7 4
 lbn r1 -1252983604 -881915129 Pressure Maximum
