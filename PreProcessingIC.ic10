@@ -11,6 +11,7 @@ ls r3 d0 0 Quantity
 l r1 d2 Reagents
 add r2 r2 r1
 s d2 SettingOutput 0
+l r4 d5 Temperature
 while0:
 sgtz r15 r3
 beqz r15 while0exit
@@ -19,38 +20,52 @@ s db Setting r2
 s d0 Open 1
 yield
 s d0 Open 0
-l r4 d2 Reagents
+l r5 d2 Reagents
 while1:
-slt r14 r4 r2
+slt r14 r5 r2
 beqz r14 while1exit
 s d2 SettingInput 100
 l r0 d5 Pressure
 div r0 r0 10000
-div r0 4 r0
+div r0 5 r0
+l r1 d5 Temperature
+div r1 2450 r1
+mul r0 r0 r1
 s d1 Setting r0
 l r1 d2 Temperature
-l r5 d2 Pressure
-sgt r13 r5 50000
+l r6 d2 Pressure
+sgt r13 r6 50000
 beqz r13 if0else
 s d2 SettingOutput 10
 j if0exit
 if0else:
 s d2 SettingOutput 0
 if0exit:
-sgt r13 r1 425
-sgt r12 r5 150
-and r11 r13 r12
-beqz r11 if1else
-s d1 On 0
-j if1exit
-if1else:
+slt r13 r1 425
+beqz r13 if1exit
 s d1 On 1
+sub r1 r1 r4
+brgt r1 -20 3
+move r1 0
+jr 2
+move r1 2
+sleep r1
 if1exit:
-l r4 d2 Reagents
+sgt r13 r1 450
+sgt r12 r6 150
+and r11 r13 r12
+beqz r11 if2exit
+sub r10 r1 425
+add r1 r10 1
+div r1 r0 r1
+s d1 Setting r1
+if2exit:
+l r4 d2 Temperature
+l r5 d2 Reagents
 j while1
 while1exit:
-yield
 s d1 On 0
+yield
 ls r3 d0 0 Quantity
 j while0
 while0exit:
