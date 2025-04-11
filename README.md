@@ -33,6 +33,33 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Gas Sensor | Gas Sensor Furnace Env. | -881915129 |
 
 \* System supports any amount of insulated tanks of any size
+### List of building supplies
+| Item      |  Quantity        |
+| ------------ | ------------ |
+| Advanced Furnace | 1 |
+| Kit (Logic switch) | 5 |
+| Kit (Consoles) | 4 |
+| Logic Memory | 4 |
+| IC Housing | 7 |
+| IC 10 Circuit | 7 |
+| Kit (Powered Chutes) | 1 |
+| Basic Chutes | >10* |
+| Circuitboard (Hash Display) | 1 |
+| Kit (Lights) | 1 |
+| Klaxon Speaker | 1 |
+| Gas Mixer | 1 |
+| Pipe Analyzer | 3 |
+| Turbo Volume Pump (Gas) | 1-2** |
+| Volume Pump (Gas) | 0-1** |
+| Active Vent | 1 |
+| Gas Sensor | 1 |
+| Pipe Utility | >=2 |
+| Pipes | >30 |
+| Cables | Yes |
+
+\* Depends on how much capacity of buffer chutes you want to have
+
+\** You can replace PreProcessing pump with turbo version for faster preprocessing
 ### ICs and their connections
 #### Recipe Chip
 Allows you to select a recipe and write its parameters to memory. There're 3 versions of code for it, one is universal and the two other ones are optimised for Venus and Vulcan accordingly.
@@ -83,7 +110,7 @@ Connections:
 | d4 | LED |
 | d5 | Klaxon |
 #### PreProcessing IC
-Processes ore and ingots. Imporant: system won't accept additional resourses after the end of PreProcessing stage.
+Processes ore and ingots to load them into the furnace chamber. Imporant: system won't accept additional resourses after the end of PreProcessing stage but during it you can throw as much as you want up to Advanced Furnace Limit.
 
 Connections:  
 | dN      |  Device        |
