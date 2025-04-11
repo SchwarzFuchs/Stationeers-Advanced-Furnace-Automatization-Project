@@ -53,8 +53,9 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Volume Pump (Gas) | 0-1** |
 | Active Vent | 1 |
 | Gas Sensor | 1 |
-| Pipe Utility | >=2 |
-| Pipes | >30 |
+| Kit (Tank Insulated) | >=2 |
+| Pipe Utility (insulated) | >=2 |
+| Pipes (insulated) | >30 |
 | Cables | Yes |
 
 \* Depends on how much capacity of buffer chutes you want to have
