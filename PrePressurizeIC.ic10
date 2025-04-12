@@ -7,15 +7,8 @@ lbn r2 435685051 -1504034795 Temperature Maximum
 lbn r3 435685051 993965803 Temperature Maximum
 lbn r4 -851746783 -1941351525 Setting Maximum
 lbn r5 -851746783 -823947099 Setting Maximum
-lbn r6 -851746783 -679739121 Setting Maximum
-div r6 r6 0.91
-sub r15 r2 r3
-div r15 100 r15
-mul r14 r3 r2
-mul r13 r4 r6
-div r14 r14 r13
-sub r14 r14 r3
-mul r6 r15 r14
+move r1 1
+jal RatioCalc
 s d3 Setting r6
 sbn -1129453144 -217226766 Mode 0
 s d4 On 1
@@ -32,6 +25,7 @@ sbn -815193061 -206058721 On 1
 sbn -815193061 -206058721 Mode 1
 sbn -815193061 -206058721 Setting 0
 s d3 On 1
+yield
 mainCycleStart:
 bge r9 r8 mainCycleEnd
 l r9 d4 TotalMoles
@@ -43,6 +37,9 @@ lbn r0 -1252983604 -881915129 Pressure Maximum
 mul r15 r0 961.497
 div r1 r15 r4
 add r9 r9 r1
+l r1 d4 Temperature
+brnez r1 2
+move r1 r4
 l r6 db Setting
 ble r0 r7 else1
 bne r6 -102 else1
@@ -63,56 +60,37 @@ else1:
 l r6 d4 Pressure
 brlt r6 45000 5
 s d3 On 0
-breq r1 -102 3
-l r1 db Setting
+breq r0 -102 3
+l r0 db Setting
 jr -2
 s d3 On 1
 end1:
 div r0 r9 r8
 sbn -815193061 -206058721 Setting r0
-mul r6 r0 2
-l r1 d4 Temperature
-sub r15 r1 r4
-div r3 r15 25
-mul r2 r6 r3
-div r1 r4 r1
-sub r1 r1 r2
+div r15 r1 r4
+div r1 1 r15
+log r1 r1
+mul r1 r1 5
+exp r1 r1
+sbn -851746783 -210862023 Setting r1
 lbn r2 435685051 -1504034795 Temperature Maximum
 lbn r3 435685051 993965803 Temperature Maximum
-brgt r1 0.85 2
-move r1 0.85
-brlt r1 1.15 2
-move r1 1.15
-lbn r0 -851746783 -679739121 Setting Maximum
-div r0 r0 0.91
-sub r15 r2 r3
-div r15 100 r15
-mul r14 r3 r2
-mul r13 r4 r0
-mul r13 r13 r1
-div r14 r14 r13
-sub r14 r14 r3
-mul r6 r15 r14
-div r15 r3 r2
-mul r15 1.2 r15
-sub r0 r15 5
-brgtz r0 2
-move r0 1
-l r3 d3 Setting
-mul r15 r3 r0
-add r15 r6 r15
-add r14 r0 1
-div r6 r15 r14
+jal RatioCalc
 s d3 Setting r6
 s d3 On 1
 j mainCycleStart
 mainCycleEnd:
 s d3 On 0
 s d2 Color 0
-breq r1 -102 4
+breq r1 -102 9
 l r1 db Setting
 l r6 d5 Pressure
-jr -3
+brne r1 100 5
+brlt r6 2 3
+l r6 d5 Pressure
+jr -2
+sbn -1129453144 -217226766 On 1
+jr -8
 sbn -1129453144 -217226766 On 1
 lbn r1 -1252983604 -881915129 Pressure Maximum
 brgt r1 r7 4
@@ -122,3 +100,17 @@ sleep 6
 sbn -815193061 -206058721 On 0
 s db Setting -200
 j 0
+jr 15
+RatioCalc:
+lbn r6 -851746783 -679739121 Setting Maximum
+mul r15 r6 r3
+mul r14 r4 r1
+sub r14 r14 r2
+mul r6 r15 r14
+mul r15 r4 r1
+sub r15 r3 r15
+mul r15 r2 r15
+add r15 r6 r15
+div r15 r6 r15
+mul r6 r15 100
+j ra
