@@ -50,6 +50,7 @@ div r3 r0 r3
 sbn -815193061 -2015441916 Mode 1
 sbn -815193061 -2015441916 On 1
 sbn -815193061 -2015441916 Setting r3
+brlt r8 450 2
 brle r6 r8 6
 s d4 Color 4
 brne r2 -102 4
