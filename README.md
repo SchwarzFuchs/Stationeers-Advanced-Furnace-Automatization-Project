@@ -6,7 +6,9 @@
 * System has some settings for using in different conditions without any code changes.
 ## Setting up
 ### Basic scheme:
-![image](https://github.com/user-attachments/assets/b0359033-e843-4bb6-a5e1-e91d8f82bbd4)
+![image](https://github.com/user-attachments/assets/9d8dfada-adcd-4956-9a25-8a876ebbeae5)
+
+
 ### Name-dependent devices
 ICs are adressing some devices by their names. So you should name them the same as in the table, or if you want to name them your own, replace the hashes in the code.
 | Device       |  Name        | Name HASH |
@@ -158,7 +160,7 @@ Connections:
 * The system continuously adjusts the mixer settings, but changes in gas composition and temperature during the smelting process may lead to worse mixing accuracy.
 * Don't copy scripts from sample world. They may not contain all the latest improvements over the code in the repository.
 * You don't need to turn on all ICs, only the Main and Recipe ones.
-* You can connect PreProcessing pump to the cold pipe if your "cold" gas is hotter than 430K. Or to the any other pipe that is hot enough, the furnace waste one for example. Don't forget to change the tank on the IC dials in this case.
+* You can connect PreProcessing pump to the cold pipe if your "cold" gas is hotter than 450K. Or to the any other pipe that is hot enough, the furnace waste one for example. Don't forget to change the tank on the IC dials in this case.
 ### Error messages from klaxon
 * Fire - you have volatiles in your pipes/tanks. Remove or burn it.
 * Temperature low - your hot gas isn't hot enough.
