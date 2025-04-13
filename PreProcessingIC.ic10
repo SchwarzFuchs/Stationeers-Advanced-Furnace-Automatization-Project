@@ -11,57 +11,68 @@ ls r3 d0 0 Quantity
 l r1 d2 Reagents
 add r2 r2 r1
 s d2 SettingOutput 0
-l r4 d5 Temperature
+move r4 300
+move r5 0
+move r6 0
+move r7 0
+jal BaseSpeed
+s d1 Setting r0
+brle r3 10 3
+s d1 On 1
+sleep 2.5
 while0:
 sgtz r15 r3
 beqz r15 while0exit
+s d1 On 1
 add r2 r2 r3
 s db Setting r2
 s d0 Open 1
 yield
 s d0 Open 0
-l r5 d2 Reagents
+l r8 d2 Reagents
 while1:
-slt r14 r5 r2
+slt r14 r8 r2
 beqz r14 while1exit
 s d2 SettingInput 100
-l r0 d5 Pressure
-div r0 r0 10000
-div r0 5 r0
-l r1 d5 Temperature
-div r1 2450 r1
-mul r0 r0 r1
-s d1 Setting r0
+jal BaseSpeed
+l r9 d2 Pressure
 l r1 d2 Temperature
-l r6 d2 Pressure
-sgt r13 r6 50000
+brgt r9 250 5
+move r7 0
+mul r13 0.5 r9
+sub r13 r13 125
+add r1 r1 r13
+sub r6 450 r1
+sbn -851746783 -210862023 Setting r1
+sgt r13 r9 50000
 beqz r13 if0else
 s d2 SettingOutput 10
 j if0exit
 if0else:
 s d2 SettingOutput 0
 if0exit:
-slt r13 r1 425
-beqz r13 if1exit
-s d1 On 1
-sub r1 r1 r4
-brgt r1 -20 3
-move r1 0
-jr 2
-move r1 2
-sleep r1
-if1exit:
-sgt r13 r1 450
-sgt r12 r6 150
+sgt r13 r1 470
+sgt r12 r9 250
 and r11 r13 r12
-beqz r11 if2exit
-sub r10 r1 425
-add r1 r10 1
-div r1 r0 r1
-s d1 Setting r1
-if2exit:
-l r4 d2 Temperature
-l r5 d2 Reagents
+beqz r11 if1else
+s d1 On 0
+j if1exit
+if1else:
+s d1 On 1
+if1exit:
+mul r13 0.0001 r6
+add r13 r0 r13
+add r12 r7 r6
+mul r12 0.0001 r12
+add r13 r13 r12
+sub r12 r4 r1
+mul r12 0.00001 r12
+add r0 r13 r12
+s d1 Setting r0
+move r4 r1
+move r5 r6
+add r7 r7 r6
+l r8 d2 Reagents
 j while1
 while1exit:
 s d1 On 0
@@ -69,6 +80,7 @@ yield
 ls r3 d0 0 Quantity
 j while0
 while0exit:
+s d2 SettingInput 0
 l r0 d2 Pressure
 s d3 Color 0
 s d4 SoundAlert 20
@@ -80,8 +92,16 @@ s d2 SettingOutput 100
 l r0 d2 Pressure
 j while2
 while2exit:
-s d2 SettingInput 0
 s d2 SettingOutput 0
 s d2 On 1
 s db Setting -200
 j 0
+jr 10
+BaseSpeed:
+l r0 d5 Pressure
+div r15 r0 26000
+div r0 1 r15
+l r1 d5 Temperature
+div r1 2450 r1
+mul r0 r0 r1
+j ra
