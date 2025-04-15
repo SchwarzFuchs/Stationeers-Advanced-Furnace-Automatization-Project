@@ -19,7 +19,8 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Pipe Analyzer | Cold Pipe Analyzer | -1504034795 |
 | Pipe Analyzer | Hot/Cold Mix Pipe Analyzer | -2109432728 |
 | Turbo Volume Pump | Hot/Cold Mix Pump | 454545836 |
-| Gas Mixer | Hot/Cold Gas Mixer | 1482292933 |
+| Turbo Volume Pump | Hot Gas Pump | -1471488033 |
+| Turbo Volume Pump | Cold Gas Pump | 239695817 |
 | Display (Small) | Hot Gas Satisfaction | -2015441916 |
 | Display (Small) | Cold Gas Satisfaction | 817721657 |
 | Display (Small) | Pressurize Status | -206058721 |
@@ -133,11 +134,11 @@ Connections:
 | dN      |  Device        |
 | ------------ | ------------ |
 | d0 | Klaxon |
-| d1 | TurboPump |
+| d1 | Hot/Cold Mix Pump |
 | d2 | LED |
-| d3 | HotColdMixer |
-| d4 | HotColdMixAnalyzer |
-| d5 | Furnace |    
+| d3 | HotColdMixAnalyzer |
+| d4 | Furnace |
+
 #### Furnace IC
 Ends pumping, releases alloy when it's ready, сlears remaining gases from the system.
 
