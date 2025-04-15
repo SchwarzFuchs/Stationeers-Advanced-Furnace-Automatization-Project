@@ -62,7 +62,7 @@ ICs are adressing some devices by their names. So you should name them the same 
 
 \* Depends on how much capacity of buffer chutes you want to have
 
-\** You can replace PreProcessing pump with turbo version for faster preprocessing
+\** You can replace PreProcessing pump with turbo version for faster preprocessing in some cases
 ### ICs and their connections
 #### Recipe Chip
 Allows you to select a recipe and write its parameters to memory. There're 3 versions of code for it, one is universal and the two other ones are optimised for Venus and Vulcan accordingly.
