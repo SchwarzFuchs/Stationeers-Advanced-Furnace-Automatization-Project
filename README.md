@@ -167,4 +167,5 @@ Connections:
 * One Pressure low - you don't have enough hot gas.
 * Temperature high - your cold gas isn't cold enough.
 * Two Pressure low - you don't have enough cold gas.
+* Three Pressure high - you have water in your pipes/tanks. Remove it.
 * System failure - for some reason the set temperature and pressure have not been reached or you put the wrong ingridients into the furnace.
