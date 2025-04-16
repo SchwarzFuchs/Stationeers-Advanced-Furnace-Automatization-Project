@@ -50,14 +50,13 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Circuitboard (Hash Display) | 1 |
 | Kit (Lights) | 1 |
 | Klaxon Speaker | 1 |
-| Gas Mixer | 1 |
-| Pipe Analyzer | 3 |
-| Turbo Volume Pump (Gas) | 1-2** |
+| Pipe Analyzer | 4 |
+| Turbo Volume Pump (Gas) | 3-4** |
 | Volume Pump (Gas) | 0-1** |
 | Active Vent | 1 |
 | Gas Sensor | 1 |
-| Kit (Tank Insulated) | >=2 |
-| Pipe Utility (insulated) | >=2 |
+| Kit (Tank Insulated) | >=3 |
+| Pipe Utility (insulated) | >=6 |
 | Pipes (insulated) | >30 |
 | Cables | Yes |
 
@@ -72,7 +71,7 @@ Connections:
 | dN      |  Device        |
 | ------------ | ------------ |
 | d0 | Dial |
-| d1 | TemperaturePrioritySwitch |
+| d1 | Temperature Priority Switch |
 | d2 | HotTank* |
 | d3 | Start Button |
 
@@ -95,9 +94,9 @@ Computes the composition of the gases in the tanks to determine the average numb
 Connections: 
 | dN      |  Device        |
 | ------------ | ------------ |
-| d0 | HotTubeAnalyzer |
-| d1 | ColdTubeAnalyzer |
-| d2 | TemperaturePrioritySwitch |
+| d0 | Hot Pipe Analyzer |
+| d1 | Cold Pipe Analyzer |
+| d2 | Temperature Priority Switch |
 | d3 | HotTank* |
 
 \* Any one of them
@@ -107,10 +106,10 @@ Calculates whether the gases meet the conditions of the selected recipe. Not 100
 Connections: 
 | dN      |  Device        |
 | ------------ | ------------ |
-| d0 | ColdGasCheckSwitch |
-| d1 | HotTubeAnalyzer |
-| d2 | TemperaturePrioritySwitch |
-| d3 | ColdTubeAnalyzer |
+| d0 | Cold Gas Check Switch |
+| d1 | Hot Pipe Analyzer |
+| d2 | Temperature Priority Switch |
+| d3 | Cold Pipe Analyzer |
 | d4 | LED |
 | d5 | Klaxon |
 #### PreProcessing IC
@@ -120,7 +119,7 @@ Connections:
 | dN      |  Device        |
 | ------------ | ------------ |
 | d0 | Valve |
-| d1 | PreProcessingPump |
+| d1 | PreProcessing Pump |
 | d2 | Furnace |
 | d3 | LED |
 | d4 | Klaxon |
@@ -136,7 +135,7 @@ Connections:
 | d0 | Klaxon |
 | d1 | Hot/Cold Mix Pump |
 | d2 | LED |
-| d3 | HotColdMixAnalyzer |
+| d3 | Hot/Cold Mix Pipe Analyzer |
 | d4 | Furnace |
 
 #### Furnace IC
@@ -146,9 +145,9 @@ Connections:
 | dN      |  Device        |
 | ------------ | ------------ |
 | d0 | Klaxon |
-| d1 | TurboPump |
+| d1 | Hot/Cold Mix Pump |
 | d2 | LED |
-| d3 | HotColdMixAnalyzer |
+| d3 | Hot/Cold Mix Pipe Analyzer |
 | d4 | Furnace |    
 
 ## Important
@@ -156,9 +155,8 @@ Connections:
 * Cold Gas Check Switch - When set to 1, makes system think that you always have enough cold gas even if tanks are currently empty. Use it on planets where you're not limited in cold gas, like Mars and Europe.
 * Temperature Priority Switch  - When set to 1, the system will use as little cold gas as possible. Use it when you are short on cold gas.
 ### Advices
-* Very high pressure on mixer inputs may lead to worse mixing accuracy.
-* Optimal buffer pipe volume — 350-450 L. Decrease to 150-250 if you have high pressure on mixer inputs, it will slow down the mixer and improve accuracy. 
-* The system continuously adjusts the mixer settings, but changes in gas composition and temperature during the smelting process may lead to worse mixing accuracy.
+* Volume of pipes between tanks and pumps should be several hundred liters, at least 300. Small volume leads to bad mixing accuracy.
+* The system continuously adjusts pump settings, but changes in gas composition and temperature during the smelting process may lead to worse mixing accuracy.
 * Don't copy scripts from sample world. They may not contain all the latest improvements over the code in the repository.
 * You don't need to turn on all ICs, only the Main and Recipe ones.
 * You can connect PreProcessing pump to the cold pipe if your "cold" gas is hotter than 450K. Or to the any other pipe that is hot enough, the furnace waste one for example. Don't forget to change the tank on the IC dials in this case.
@@ -169,4 +167,4 @@ Connections:
 * Temperature high - your cold gas isn't cold enough.
 * Two Pressure low - you don't have enough cold gas.
 * Three Pressure high - you have water in your pipes/tanks. Remove it.
-* System failure - for some reason the set temperature and pressure have not been reached or you put the wrong ingridients into the furnace.
+* System failure - after the attempt to pressurize furnace - for some reason the set temperature and pressure have not been reached or you put the wrong ingridients into the furnace.
