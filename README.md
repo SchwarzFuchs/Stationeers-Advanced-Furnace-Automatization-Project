@@ -29,8 +29,10 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Logic Memory | Logic Memory Target Hash | -74186795 |
 | Small Insulated Tank* | Hot Tank Small | -382368696 |
 | Small Insulated Tank | Cold Tank Small | 765508678 |
+| Small Insulated Tank | Waste Tank Small | 986570611 |
 | Big Insulated Tank | Hot Tank Big | 1739686464 |
 | Big Insulated Tank | Cold Tank Big | -1045288362 |
+| Big Insulated Tank | Waste Tank Big | 2088526909 |
 | Active Vent | Active Vent Furnace Env. Pressurize | -217226766 |
 | Gas Sensor | Gas Sensor Furnace Env. | -881915129 |
 
@@ -55,7 +57,7 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Volume Pump (Gas) | 0-1** |
 | Active Vent | 1 |
 | Gas Sensor | 1 |
-| Kit (Tank Insulated) | >=2 |
+| Kit (Tank Insulated) | >=3 |
 | Pipe Utility (insulated) | >=2 |
 | Pipes (insulated) | >30 |
 | Cables | Yes |
