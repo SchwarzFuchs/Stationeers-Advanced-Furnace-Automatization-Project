@@ -71,7 +71,7 @@ Connections:
 | dN      |  Device        |
 | ------------ | ------------ |
 | d0 | Dial |
-| d1 | TemperaturePrioritySwitch |
+| d1 | Temperature Priority Switch |
 | d2 | HotTank* |
 | d3 | Start Button |
 
@@ -94,9 +94,9 @@ Computes the composition of the gases in the tanks to determine the average numb
 Connections: 
 | dN      |  Device        |
 | ------------ | ------------ |
-| d0 | HotTubeAnalyzer |
-| d1 | ColdTubeAnalyzer |
-| d2 | TemperaturePrioritySwitch |
+| d0 | Hot Pipe Analyzer |
+| d1 | Cold Pipe Analyzer |
+| d2 | Temperature Priority Switch |
 | d3 | HotTank* |
 
 \* Any one of them
@@ -106,10 +106,10 @@ Calculates whether the gases meet the conditions of the selected recipe. Not 100
 Connections: 
 | dN      |  Device        |
 | ------------ | ------------ |
-| d0 | ColdGasCheckSwitch |
-| d1 | HotTubeAnalyzer |
-| d2 | TemperaturePrioritySwitch |
-| d3 | ColdTubeAnalyzer |
+| d0 | Cold Gas Check Switch |
+| d1 | Hot Pipe Analyzer |
+| d2 | Temperature Priority Switch |
+| d3 | Cold Pipe Analyzer |
 | d4 | LED |
 | d5 | Klaxon |
 #### PreProcessing IC
@@ -119,7 +119,7 @@ Connections:
 | dN      |  Device        |
 | ------------ | ------------ |
 | d0 | Valve |
-| d1 | PreProcessingPump |
+| d1 | PreProcessing Pump |
 | d2 | Furnace |
 | d3 | LED |
 | d4 | Klaxon |
@@ -133,10 +133,10 @@ Connections:
 | dN      |  Device        |
 | ------------ | ------------ |
 | d0 | Klaxon |
-| d1 | TurboPump |
+| d1 | Hot/Cold Mix Pump |
 | d2 | LED |
-| d3 | HotColdMixer |
-| d4 | HotColdMixAnalyzer |
+| d3 | Hot/Cold Mixer |
+| d4 | Hot/Cold Mix Analyzer |
 | d5 | Furnace |    
 #### Furnace IC
 Ends pumping, releases alloy when it's ready, сlears remaining gases from the system.
@@ -145,9 +145,9 @@ Connections:
 | dN      |  Device        |
 | ------------ | ------------ |
 | d0 | Klaxon |
-| d1 | TurboPump |
+| d1 | Hot/Cold Mix Pump |
 | d2 | LED |
-| d3 | HotColdMixAnalyzer |
+| d3 | Hot/Cold Mix Analyzer |
 | d4 | Furnace |    
 
 ## Important
