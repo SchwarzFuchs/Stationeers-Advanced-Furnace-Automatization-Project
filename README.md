@@ -14,13 +14,16 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Device       |  Name        | Name HASH |
 | ------------ | ------------ |---------- |
 | Button | Button Gas Check | -1443172783 |
+| Lever | Ore Smelting Mode Lever | 1162733794 |
 | Advanced Furnace | Advanced Furnace | -1131993479 |
 | Pipe Analyzer | Hot Pipe Analyzer | 993965803 |
 | Pipe Analyzer | Cold Pipe Analyzer | -1504034795 |
+| Pipe Analyzer | Waste Pipe Analyzer | -114736392 |
 | Pipe Analyzer | Hot/Cold Mix Pipe Analyzer | -2109432728 |
 | Turbo Volume Pump | Hot/Cold Mix Pump | 454545836 |
 | Turbo Volume Pump | Hot Gas Pump | -1471488033 |
 | Turbo Volume Pump | Cold Gas Pump | 239695817 |
+| Turbo Volume Pump | Waste Pump | 1228632777 |
 | Display (Small) | Hot Gas Satisfaction | -2015441916 |
 | Display (Small) | Cold Gas Satisfaction | 817721657 |
 | Display (Small) | Pressurize Status | -206058721 |
@@ -30,8 +33,10 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Logic Memory | Logic Memory Target Hash | -74186795 |
 | Small Insulated Tank* | Hot Tank Small | -382368696 |
 | Small Insulated Tank | Cold Tank Small | 765508678 |
+| Small Insulated Tank | Waste Tank Small | 986570611 |
 | Big Insulated Tank | Hot Tank Big | 1739686464 |
 | Big Insulated Tank | Cold Tank Big | -1045288362 |
+| Big Insulated Tank | Waste Tank Big | 2088526909 |
 | Active Vent | Active Vent Furnace Env. Pressurize | -217226766 |
 | Gas Sensor | Gas Sensor Furnace Env. | -881915129 |
 
@@ -40,7 +45,7 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Item      |  Quantity        |
 | ------------ | ------------ |
 | Advanced Furnace | 1 |
-| Kit (Logic switch) | 5 |
+| Kit (Logic switch) | 6 |
 | Kit (Consoles) | 4 |
 | Logic Memory | 4 |
 | IC Housing | 7 |
@@ -88,7 +93,7 @@ Connections:
 | d3 | FurnaceIC |
 | d4 | GasCompositionCheckIC |
 | d5 | PrePressurizeIC |  
-#### Gas Composition Checker IC
+#### Gas Composition Check IC
 Computes the composition of the gases in the tanks to determine the average number of joules per mole for the more accurate calculations.
 
 Connections: 
@@ -96,8 +101,7 @@ Connections:
 | ------------ | ------------ |
 | d0 | Hot Pipe Analyzer |
 | d1 | Cold Pipe Analyzer |
-| d2 | Temperature Priority Switch |
-| d3 | HotTank* |
+| d2 | Waste Pipe Analyzer |
 
 \* Any one of them
 #### Gas Checker IC
