@@ -39,6 +39,7 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Big Insulated Tank | Waste Tank Big | 2088526909 |
 | Active Vent | Active Vent Furnace Env. Pressurize | -217226766 |
 | Gas Sensor | Gas Sensor Furnace Env. | -881915129 |
+| IC Housing | GasCalculator IC | 1225496579 |
 
 \* System supports any amount of insulated tanks of any size
 ### List of building supplies
@@ -87,14 +88,14 @@ Monitors button presses and orchestrates all other chips, except for the Recipe 
 Connections: 
 | dN      |  Device        |
 | ------------ | ------------ |
-| d0 | StartButton |
-| d1 | GasCheckIC |
-| d2 | PreProccesIC |
-| d3 | FurnaceIC |
-| d4 | GasCompositionCheckIC |
-| d5 | PrePressurizeIC |  
-#### Gas Composition Check IC
-Computes the composition of the gases in the tanks to determine the average number of joules per mole for the more accurate calculations.
+| d0 | Start Button |
+| d1 | GasCheck IC |
+| d2 | PreProcces IC |
+| d3 | Furnace IC |
+| d4 | Gas Calculator IC |
+| d5 | PrePressurize IC |  
+#### Gas Calculator IC
+Computes the composition of the gases in the tanks to determine the average number of joules per mole for the more accurate calculations. Also determines the possibilyty of waste gas usage.
 
 Connections: 
 | dN      |  Device        |
