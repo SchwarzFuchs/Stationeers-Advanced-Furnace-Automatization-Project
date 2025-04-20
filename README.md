@@ -20,10 +20,13 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Pipe Analyzer | Cold Pipe Analyzer | -1504034795 |
 | Pipe Analyzer | Waste Pipe Analyzer | -114736392 |
 | Pipe Analyzer | Hot/Cold Mix Pipe Analyzer | -2109432728 |
+| Pipe Analyzer | Waste Buffer Pipe Analyzer | -887401742 |
 | Turbo Volume Pump | Hot/Cold Mix Pump | 454545836 |
 | Turbo Volume Pump | Hot Gas Pump | -1471488033 |
 | Turbo Volume Pump | Cold Gas Pump | 239695817 |
 | Turbo Volume Pump | Waste Pump | 1228632777 |
+| Volume Pump | Preserve Waste Pump | -982582202 |
+| Volume Pump | Discard Waste Pump | -1383860730 |
 | Display (Small) | Hot Gas Satisfaction | -2015441916 |
 | Display (Small) | Cold Gas Satisfaction | 817721657 |
 | Display (Small) | Pressurize Status | -206058721 |
@@ -31,6 +34,7 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Logic Memory | Logic Memory Target Temperature | -1941351525 |
 | Logic Memory | Logic Memory Correction Mean | -679739121 |
 | Logic Memory | Logic Memory Target Hash | -74186795 |
+| Logic Memory | Logic Memory Waste Preserve Threshold | -1125432018 |
 | Small Insulated Tank* | Hot Tank Small | -382368696 |
 | Small Insulated Tank | Cold Tank Small | 765508678 |
 | Small Insulated Tank | Waste Tank Small | 986570611 |
@@ -48,7 +52,7 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Advanced Furnace | 1 |
 | Kit (Logic switch) | 6 |
 | Kit (Consoles) | 4 |
-| Logic Memory | 4 |
+| Logic Memory | 5 |
 | IC Housing | 7 |
 | IC 10 Circuit | 7 |
 | Kit (Powered Chutes) | 1 |
@@ -56,9 +60,9 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Circuitboard (Hash Display) | 1 |
 | Kit (Lights) | 1 |
 | Klaxon Speaker | 1 |
-| Pipe Analyzer | 4 |
+| Pipe Analyzer | 5 |
 | Turbo Volume Pump (Gas) | 3-4** |
-| Volume Pump (Gas) | 0-1** |
+| Volume Pump (Gas) | 2-3** |
 | Active Vent | 1 |
 | Gas Sensor | 1 |
 | Kit (Tank Insulated) | >=3 |
@@ -113,7 +117,7 @@ Connections:
 | ------------ | ------------ |
 | d0 | Cold Gas Check Switch |
 | d1 | Hot Pipe Analyzer |
-| d2 | Temperature Priority Switch |
+| d2 | Waste Pipe Analyzer |
 | d3 | Cold Pipe Analyzer |
 | d4 | LED |
 | d5 | Klaxon |
@@ -167,7 +171,7 @@ Connections:
 * You can connect PreProcessing pump to the cold pipe if your "cold" gas is hotter than 450K. Or to the any other pipe that is hot enough, the furnace waste one for example. Don't forget to change the tank on the IC dials in this case.
 ### Error messages from klaxon
 * Fire - you have volatiles in your pipes/tanks. Remove or burn it.
-* Temperature low - your hot gas isn't hot enough.
+* Temperature low - your hot gas isn't hot enough. It could be about gas you use for smelting (should be hotter than target temperature) or about gas you use for preprocessing (should be hotter than 450K).
 * One Pressure low - you don't have enough hot gas.
 * Temperature high - your cold gas isn't cold enough.
 * Two Pressure low - you don't have enough cold gas.
