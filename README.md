@@ -14,7 +14,6 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Device       |  Name        | Name HASH |
 | ------------ | ------------ |---------- |
 | Button | Button Gas Check | -1443172783 |
-| Lever | Ore Smelting Mode Lever | 1162733794 |
 | Advanced Furnace | Advanced Furnace | -1131993479 |
 | Pipe Analyzer | Hot Pipe Analyzer | 993965803 |
 | Pipe Analyzer | Cold Pipe Analyzer | -1504034795 |
