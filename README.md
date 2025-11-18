@@ -70,6 +70,7 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Pipe Analyzer | 5 |
 | Turbo Volume Pump (Gas) | 4-5** |
 | Volume Pump (Gas) | 2-3** |
+| Kit (Pressure Regulator) | 0-1*** |
 | Active Vent | 1 |
 | Gas Sensor | 1 |
 | Kit (Tank Insulated) | >=3 |
@@ -77,9 +78,11 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Pipes (insulated) | >30 |
 | Cables | Yes |
 
-\* Depends on how much capacity of buffer chutes you want to have
+\* Depends on how much capacity of buffer chutes you want to have.
 
-\** You can replace PreProcessing pump with turbo version for faster preprocessing in some cases
+\** You can replace PreProcessing pump with turbo version for faster preprocessing in some cases.
+
+\*** You probalbly want to have one if you don't want your waste tank to explode.
 ### ICs and their connections
 #### Recipe IC
 Allows you to select a recipe and write its parameters to memory. There're 3 versions of code for it, one is universal and the two other ones are optimised for Venus and Vulcan accordingly.
