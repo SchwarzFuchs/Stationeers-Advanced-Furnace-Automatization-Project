@@ -1,0 +1,72 @@
+clr db
+s d0 Mode 16
+move r16 0
+push -654790771
+push 905
+push 99999
+push 1050
+push -82508479
+push 405
+push 545
+push 1050
+push -297990285
+push 1205
+push 1495
+push 18100
+push 502280180
+push 605
+push 99999
+push 825
+push 1058547521
+push 1005
+push 99999
+push 20100
+push -787796599
+push 605
+push 99999
+push 23600
+push 156348098
+push 405
+push 795
+push 50300
+push -1897868623
+push 1805
+push 99999
+push 10100
+push 412924554
+push 1005
+push 99999
+push 30150
+push 1579842814
+push 955
+push 995
+push 25100
+AfterStack:
+l r10 d3 Lock
+brne r10 1 3
+l r11 d0 Setting
+l r10 d3 Lock
+brne r10 1 3
+s d0 Setting r11
+jr -3
+l r4 d0 Setting
+l r5 d1 Setting
+l r6 d2 Temperature
+sub r6 r6 0.1
+mul r15 r4 4
+add r16 r15 4
+pop r1
+breq r5 0 6
+pop r0
+brle r0 r6 2
+move r0 r6
+sub r16 r16 1
+jr 3
+sub r16 r16 1
+pop r0
+pop r2
+s db Setting r2
+sbn -851746783 -1941351525 Setting r0
+sbn -851746783 -823947099 Setting r1
+sbn -851746783 -74186795 Setting r2
+j AfterStack

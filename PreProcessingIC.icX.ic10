@@ -1,0 +1,128 @@
+l r0 db Setting
+breq r0 -102 2
+j 0
+l r2 d5 Temperature
+brge r2 425 6
+s d4 SoundAlert 42
+sleep 1.5
+s d3 Color 4
+s db Setting -500
+j 0
+s d3 Color 5
+sbn -321403609 -982582202 Setting 10
+sbn -321403609 -1383860730 Setting 10
+s d2 On 1
+s d2 Open 0
+s d0 On 1
+s d0 Setting 1
+ls r3 d0 0 Quantity
+l r4 d2 Reagents
+s d2 SettingOutput 0
+move r5 425
+move r8 0
+sbn 435685051 -2109432728 On 1
+l r1 d5 Pressure
+div r15 r1 6666
+div r1 1 r15
+s d1 Setting r1
+brle r3 10 3
+s d1 On 1
+sleep 2.5
+s d2 SettingInput 100
+whilestart1:
+beqz r3 whileend1
+s d1 On 1
+add r4 r4 r3
+s d0 Open 1
+yield
+s d0 Open 0
+l r9 d2 Reagents
+whilestart2:
+bge r9 r4 whileend2
+l r1 d5 Pressure
+div r15 r1 26000
+div r1 1 r15
+l r2 d5 Temperature
+div r2 2450 r2
+mul r1 r1 r2
+l r10 d2 Pressure
+l r2 d2 Temperature
+brgt r10 250 5
+move r8 0
+mul r15 0.5 r10
+sub r15 r15 150
+add r2 r2 r15
+sub r7 425 r2
+brge r10 50000 4
+s d2 SettingOutput 5
+sbn -321403609 -982582202 On 1
+jr 3
+s d2 SettingOutput 0
+sbn -321403609 -982582202 On 0
+brle r2 425 4
+brle r10 250 3
+s d1 On 0
+jr 2
+s d1 On 1
+mul r15 0.0001 r7
+add r15 r1 r15
+mul r14 0.00005 r8
+add r15 r15 r14
+sub r14 r5 r2
+mul r14 0.00001 r14
+add r1 r15 r14
+s d1 Setting r1
+move r5 r2
+move r6 r7
+add r8 r8 r7
+l r9 d2 Reagents
+j whilestart2
+whileend2:
+s d1 On 0
+ls r3 d0 0 Quantity
+j whilestart1
+whileend1:
+s d3 Color 0
+sbn 1310794736 454545836 Setting 100
+sbn -1129453144 -217226766 Mode 1
+l r1 d2 Pressure
+lbn r8 -851746783 -1125432018 Setting Maximum
+l r2 d2 Temperature
+lbn r3 -1252983604 -881915129 Temperature Maximum
+sbn -321403609 -982582202 On 1
+sbn -321403609 -1383860730 On 0
+brge r2 r8 4
+sbn -321403609 -982582202 On 0
+sbn -321403609 -1383860730 On 1
+brgt r5 0.25 5
+brgt r1 0.25 4
+brgt r6 0.25 3
+brgtz r3 2
+jr 18
+l r1 d2 Pressure
+brge r1 3 3
+sbn -1129453144 -217226766 On 1
+sbn 1310794736 454545836 On 1
+l r2 d2 Temperature
+lbn r6 435685051 -887401742 Pressure Maximum
+lbn r8 435685051 -887401742 Volume Maximum
+lbn r5 435685051 -2109432728 Pressure Maximum
+mul r3 r1 r2
+add r3 r3 0.0001
+mul r15 r8 r2
+sub r14 50000 r6
+mul r15 r15 r14
+div r2 r15 r3
+lbn r3 -1252983604 -881915129 Temperature Maximum
+s d2 SettingOutput r2
+jr -21
+s d2 SettingOutput 0
+s d2 SettingInput 0
+sbn 1310794736 454545836 On 0
+sbn -1129453144 -217226766 On 0
+sbn -321403609 -982582202 On 0
+sbn -321403609 -1383860730 On 0
+s d0 On 0
+yield
+s db Setting -200
+j 0
