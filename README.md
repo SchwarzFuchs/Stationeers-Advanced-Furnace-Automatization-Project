@@ -6,8 +6,9 @@
 * System has some setting switches for using in different conditions without any code changes.
 ## Setting up
 ### Basic scheme:
-<img width="5210" height="3510" alt="StationeersAdvFurnaceScheme drawio (1)" src="https://github.com/user-attachments/assets/a153947c-8577-4277-86d9-9304a704326e" />
+<img width="5210" height="3510" alt="StationeersAdvFurnaceScheme drawio (1)" src="https://github.com/user-attachments/assets/e3e99161-5d3f-44a7-83be-c09981dc77a0" />
 
+\* For detailed scheme see repo files
 ### Name-dependent devices
 ICs are adressing some devices by their names. So you should name them the same as in the table, or if you want to name them your own, replace the hashes in the code.
 | Device       |  Name        | Name HASH |
@@ -33,7 +34,6 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Logic Memory | Logic Memory Target Hash | -74186795 |
 | Logic Memory | Logic Memory Waste Preserve Threshold | -1125432018 |
 | Button | Gas Check Button | -803738805 |
-| Switch | Cold Gas Check Switch | -1113167255 |
 | Switch | Temperature Priority Switch | 889038674 |
 | Switch | No Waste Usage Switch | 418789413 |
 | Small Insulated Tank* | Hot Tank Small | -382368696 |
@@ -57,7 +57,7 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Item      |  Quantity        |
 | ------------ | ------------ |
 | Advanced Furnace | 1 |
-| Kit (Logic switch) | 6 |
+| Kit (Logic switch) | 5 |
 | Kit (Consoles) | 4 |
 | Logic Memory | 5 |
 | IC Housing | 7 |
@@ -117,6 +117,7 @@ Connections:
 | d0 | Hot Pipe Analyzer |
 | d1 | Cold Pipe Analyzer |
 | d2 | Waste Pipe Analyzer |
+| d3 | No Waste Usage Switch |
 
 #### Gas Check IC
 Calculates whether the gases meet the conditions of the selected recipe. 
@@ -124,7 +125,7 @@ Calculates whether the gases meet the conditions of the selected recipe.
 Connections: 
 | dN      |  Device        |
 | ------------ | ------------ |
-| d0 | Cold Gas Check Switch |
+| d0 | No Waste Usage Switch |
 | d1 | Hot Pipe Analyzer |
 | d2 | Waste Pipe Analyzer |
 | d3 | Cold Pipe Analyzer |
@@ -170,15 +171,15 @@ Connections:
 
 ## Important
 ### Setting switches
-* Cold Gas Check Switch — When set to 1, makes system think that you always have enough cold gas even if tanks are currently empty. Use it on planets where you're not limited in cold gas, like Mars and Europe.
 * Temperature Priority Switch — When set to 1, the system will use as little cold gas as possible. Use it when you are short on cold gas.
 * No Waste Usage Switch — name speaks for itself.
 ### Advices
 * Volume of pipes between tanks and pumps should be several hundred liters, at least 300. Small volume leads to bad mixing accuracy.
-* Mix buffer pipe volume shouldn't be big, otherwise system will work slow.
-* If you feel that system overcorrects itself too much, try lowering the number on line 69 of PrePressurizingIC, default value is 48.
+* Mix buffer pipe volume shouldn't be big, otherwise system will work slow. 100-150L are optimal.
+* If you feel that system overcorrects itself too much and furnace temperature behaves like sisusoid, try lowering the value on line 66 of PrePressurizing IC, default value is 48.
+* If the pipe between the mix pump and the furnace gets damaged from overpressure (theoretically it can happen if you have super high pressure in your tanks), increase the value on line 95 of PrePressurizing IC, default value is 105.
 * The system continuously adjusts pump settings, but changes in gas composition and temperature during the smelting process may lead to worse mixing accuracy.
-* Don't copy code from sample world ICs. They may not contain all the latest improvements over the code in the repository.
+* Don't copy the code from sample world ICs. They may not contain all the latest improvements over the code in the repository.
 * You don't need to turn on all ICs, only the Main and Recipe ones.
 * You can connect PreProcessing pump to the cold pipe if your "cold" gas is hotter than 450K. Or to the any other pipe that is hot enough, the furnace waste one for example. Don't forget to change the tank on the IC dials in this case.
 ### Error messages from klaxon
