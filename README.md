@@ -30,7 +30,6 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Display (Small) | Pressurize Status | -206058721 |
 | Logic Memory | Logic Memory Target Pressure | -823947099 |
 | Logic Memory | Logic Memory Target Temperature | -1941351525 |
-| Logic Memory | Logic Memory Correction Mean | -679739121 |
 | Logic Memory | Logic Memory Target Hash | -74186795 |
 | Logic Memory | Logic Memory Waste Preserve Threshold | -1125432018 |
 | Button | Gas Check Button | -803738805 |
@@ -59,7 +58,7 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Advanced Furnace | 1 |
 | Kit (Logic switch) | 5 |
 | Kit (Consoles) | 4 |
-| Logic Memory | 5 |
+| Logic Memory | 4 |
 | IC Housing | 7 |
 | IC 10 Circuit | 7 |
 | Kit (Powered Chutes) | 1 |
@@ -85,7 +84,7 @@ ICs are adressing some devices by their names. So you should name them the same 
 \*** You probalbly want to have one if you don't want your waste tank to explode.
 ### ICs and their connections
 #### Recipe IC
-Allows you to select a recipe and write its parameters to memory. There're 3 versions of code for it, one is universal and the two other ones are optimised for Venus and Vulcan accordingly.
+Allows you to select a recipe and write its parameters to memory. There're 3 versions of code for it, one is universal and the two other ones are optimised for Venus and Vulcan accordingly by increasing the minimum teperature for some alloys.
 
 Connections: 
 | dN      |  Device        |
@@ -177,11 +176,12 @@ Connections:
 * Volume of pipes between tanks and pumps should be several hundred liters, at least 300. Small volume leads to bad mixing accuracy.
 * Mix buffer pipe volume shouldn't be big, otherwise system will work slow. 100-150L are optimal.
 * If you feel that system overcorrects itself too much and furnace temperature behaves like sisusoid, try lowering the value on line 66 of PrePressurizing IC, default value is 48.
-* If the pipe between the mix pump and the furnace gets damaged from overpressure (theoretically it can happen if you have super high pressure in your tanks), increase the value on line 95 of PrePressurizing IC, default value is 105.
+* If the pipe between the mix pump and the furnace gets damaged from overpressure (theoretically it can happen if you have super high pressure in your tanks), decrease the value on line 85 of PrePressurizing IC, default value is 470000.
 * The system continuously adjusts pump settings, but changes in gas composition and temperature during the smelting process may lead to worse mixing accuracy.
 * Don't copy the code from sample world ICs. They may not contain all the latest improvements over the code in the repository.
 * You don't need to turn on all ICs, only the Main and Recipe ones.
 * You can connect PreProcessing pump to the cold pipe if your "cold" gas is hotter than 450K. Or to the any other pipe that is hot enough, the furnace waste one for example. Don't forget to change the tank on the IC dials in this case.
+* You can set any target temperature, pressure and hash by turning off Recipe IC and setting values directly into logic memory chips. You also can change the minimum waste preserve tepmerature this way without turning Recipe IC off, but if it will be lower than the the tepmperature of cold gas, it will be automatically increased.
 ### Error messages from klaxon
 * Fire — you have volatiles in your pipes/tanks. Remove or burn it.
 * Temperature low — your hot gas isn't hot enough. It could be about gas you use for smelting (should be hotter than target temperature) or about gas you use for preprocessing (should be hotter than 450K).
