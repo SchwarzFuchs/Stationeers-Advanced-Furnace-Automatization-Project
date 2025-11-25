@@ -3,13 +3,15 @@ sbn 435685051 -1504034795 Lock 0
 sbn 435685051 -2109432728 Lock 0
 sbn 435685051 993965803 Lock 0
 sbn 1310794736 454545836 Lock 0
-sbn 1310794736 454545836 Lock 0
+sbn 1310794736 239695817 Lock 0
 sbn 1310794736 -1471488033 Lock 0
 sbn 1310794736 1228632777 Lock 0
 sbn 435685051 -114736392 Lock 0
+sbn 435685051 1162784293 Lock 0
 sbn 321604921 418789413 Lock 0
-sbn 321604921 -1113167255 Lock 0
 sbn 321604921 889038674 Lock 0
+sbn -321403609 -982582202 Lock 0
+sbn -321403609 -1383860730 Lock 0
 s d0 Lock 0
 AfterUnlock:
 l r0 d0 Setting
@@ -27,22 +29,22 @@ sbn 435685051 993965803 Lock 1
 sbn 1310794736 454545836 Lock 1
 sbn 435685051 -2109432728 Lock 1
 sbn 1310794736 1228632777 Lock 1
+sbn 1310794736 239695817 Lock 1
 sbn 435685051 -114736392 Lock 1
+sbn 435685051 1162784293 Lock 1
 sbn 321604921 418789413 Lock 1
-sbn 321604921 -1113167255 Lock 1
 sbn 321604921 889038674 Lock 1
 sbn 1310794736 454545836 Lock 1
 sbn 1310794736 -1471488033 Lock 1
+sbn -321403609 -982582202 Lock 1
+sbn -321403609 -1383860730 Lock 1
 move r2 0
 s d5 Setting 0
 s d4 On 1
 s d4 Setting -102
-breq r2 -200 6
+breq r2 -200 3
 l r2 d4 Setting
-brne r2 -500 3
-s d4 On 0
-j 0
-jr -5
+jr -2
 move r2 0
 s d1 Setting -102
 s d1 On 1
@@ -60,6 +62,7 @@ j 0
 move r2 0
 sbn 545937711 -1131993479 On 1
 s d4 Setting -100
+sleep 1
 s d1 Setting -100
 s d1 On 1
 beq r3 1 PrePressurizeStage
@@ -79,14 +82,22 @@ j MainSequence
 PrePressurizeStage:
 move r2 0
 clr d5
+sbn -1129453144 -217226766 Mode 0
+sbn 435685051 1162784293 On 1
+sbn -815193061 -206058721 Setting 0
+sbn -815193061 -206058721 Mode 1
+sbn -815193061 -206058721 On 1
 s d5 LineNumber 0
 s d5 Setting -102
 s d5 On 1
 breq r2 -200 3
 l r2 d5 Setting
 jr -2
+sbn -815193061 -206058721 On 0
 s d4 On 0
 s d1 On 0
+s d4 LineNumber 0
+s d1 LineNumber 0
 move r2 0
 s d5 On 0
 s d3 Setting -102
