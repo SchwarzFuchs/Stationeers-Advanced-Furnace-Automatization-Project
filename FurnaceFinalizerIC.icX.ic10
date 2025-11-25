@@ -1,0 +1,92 @@
+l r1 db Setting
+breq r1 -102 2
+j 0
+lbn r3 -851746783 -1941351525 Setting Maximum
+lbn r4 -851746783 -823947099 Setting Maximum
+lbn r5 -851746783 -74186795 Setting Maximum
+l r1 d3 Pressure
+s d4 SettingInput 100
+s d1 On 1
+jr 4
+while0:
+sgt r15 r1 1
+beqz r15 while0exit
+sleep 1
+l r1 d3 Pressure
+l r0 d4 RecipeHash
+seq r14 r0 r5
+beqz r14 if0exit
+s d4 Open 1
+s d2 Color 2
+jal Cleanup
+s d4 Open 0
+s db Setting -200
+j 0
+if0exit:
+j while0
+while0exit:
+l r1 d4 Open
+l r0 d4 Pressure
+sne r15 r1 1
+beqz r15 if1exit
+s d2 Color 4
+s d0 SoundAlert 24
+sleep 2
+jal Cleanup
+s db Setting -500
+if1exit:
+j 0
+jr 56
+Cleanup:
+s d0 SoundAlert 20
+lbn r2 -1252983604 -881915129 Pressure Maximum
+sbn -1129453144 -217226766 Mode 1
+sbn -1129453144 -217226766 PressureInternal 45000
+sbn 1310794736 454545836 Setting 100
+l r1 d4 Pressure
+lbn r0 -851746783 -1125432018 Setting Maximum
+l r3 d4 Temperature
+lbn r4 -1252983604 -881915129 Temperature Maximum
+sbn -321403609 -982582202 On 1
+sbn -321403609 -1383860730 On 0
+brge r3 r0 8
+sbn -321403609 -982582202 On 0
+sbn -321403609 -1383860730 On 1
+brgt r5 0.25 5
+brgt r1 0.25 4
+brgt r6 0.25 3
+brgtz r4 2
+jr 18
+l r1 d4 Pressure
+brge r1 3 3
+sbn -1129453144 -217226766 On 1
+sbn 1310794736 454545836 On 1
+l r3 d4 Temperature
+lbn r6 435685051 -887401742 Pressure Maximum
+lbn r0 435685051 -887401742 Volume Maximum
+lbn r5 435685051 -2109432728 Pressure Maximum
+mul r4 r1 r3
+add r4 r4 0.0001
+mul r15 r0 r3
+sub r14 50000 r6
+mul r15 r15 r14
+div r3 r15 r4
+lbn r4 -1252983604 -881915129 Temperature Maximum
+s d4 SettingOutput r3
+jr -21
+s d4 SettingOutput 0
+s d4 SettingInput 0
+sbn 1310794736 454545836 On 0
+sbn -1129453144 -217226766 On 0
+sbn -321403609 -982582202 On 0
+sbn -321403609 -1383860730 On 0
+s d1 On 0
+s d3 On 0
+s d4 On 0
+sbn -815193061 -2015441916 On 0
+sbn -815193061 817721657 On 0
+sbn 435685051 -887401742 On 0
+s d2 On 0
+s d0 SoundAlert 0
+yield
+j ra

@@ -1,0 +1,126 @@
+l r4 db Setting
+breq r4 -102 3
+breq r4 -100 2
+j 0
+move r16 0
+l r0 d1 ReferenceId
+push r0
+l r0 d0 ReferenceId
+push r0
+l r0 d2 ReferenceId
+push r0
+push 21.1
+push 20.6
+push 28.2
+push 24.8
+push 37.2
+s d0 On 1
+s d1 On 1
+s d2 On 1
+sbn 435685051 -887401742 On 1
+yield
+move r16 1
+bge r16 4 47
+peek r5
+ld r0 r5 RatioOxygen
+get r2 db 3
+mul r1 r0 r2
+ld r0 r5 RatioNitrogen
+get r2 db 4
+mul r15 r0 r2
+add r1 r1 r15
+ld r0 r5 RatioCarbonDioxide
+get r2 db 5
+mul r15 r0 r2
+add r1 r1 r15
+ld r0 r5 RatioPollutant
+get r2 db 6
+mul r15 r0 r2
+add r1 r1 r15
+ld r0 r5 RatioNitrousOxide
+get r2 db 7
+mul r15 r0 r2
+add r1 r1 r15
+add r16 r16 7
+put db sp r1
+sub r16 r16 6
+j 22
+lbn r6 -851746783 -1941351525 Setting Maximum
+l r7 d2 Temperature
+l r8 d1 Temperature
+l r9 d0 Temperature
+lbn r0 -851746783 -823947099 Setting Maximum
+mul r15 120.279 r0
+div r15 r15 r6
+add r3 r15 69
+lbn r1 272136332 986570611 TotalMoles Sum
+lbn r2 1280378227 2088526909 TotalMoles Sum
+add r1 r1 r2
+l r2 d2 TotalMoles
+add r10 r1 r2
+brne r11 1 2
+put db 12 0
+l r11 d3 Setting
+put db 11 r3
+bne r4 -102 110
+get r2 db 10
+blt r7 r6 80
+get r1 db 8
+div r0 r1 r2
+sub r15 r6 r8
+mul r0 r0 r15
+sub r15 r7 r6
+add r15 r15 r0
+div r0 r0 r15
+mul r0 r0 r3
+brlt r10 r0 5
+brnez r11 2
+put db 12 1
+sub r1 r3 r0
+put db 15 r1
+bge r7 r6 95
+ble r7 r8 95
+get r1 db 9
+div r0 r2 r1
+sub r15 r6 r7
+mul r0 r0 r15
+sub r15 r9 r6
+add r15 r15 r0
+div r0 r0 r15
+mul r0 r0 r3
+brlt r10 r0 5
+brnez r11 2
+put db 12 2
+sub r1 r3 r0
+put db 14 r1
+brgt r7 r8 2
+put db 12 0
+put db 13 r0
+get r1 db 8
+get r2 db 9
+div r0 r1 r2
+sub r15 r6 r8
+mul r0 r0 r15
+sub r15 r9 r6
+add r15 r15 r0
+div r0 r0 r15
+mul r0 r0 r3
+put db 16 r0
+sub r0 r3 r0
+put db 17 r0
+put db 18 r10
+lbn r1 272136332 -382368696 TotalMoles Sum
+lbn r2 1280378227 1739686464 TotalMoles Sum
+add r1 r1 r2
+l r2 d0 TotalMoles
+add r10 r1 r2
+put db 19 r10
+lbn r1 272136332 765508678 TotalMoles Sum
+lbn r2 1280378227 -1045288362 TotalMoles Sum
+add r1 r1 r2
+l r2 d1 TotalMoles
+add r10 r1 r2
+put db 20 r10
+breq r4 -100 2
+s db Setting -200
+j 0

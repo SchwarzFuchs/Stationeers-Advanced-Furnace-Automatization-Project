@@ -1,0 +1,87 @@
+bdns d4 afterSorter
+s d4 Mode 1 # Any
+s d4 On 1
+clr d4
+sll r0 SortingClass.Ores 16
+sll r1 Equals 8
+or r0 r0 r1
+or r0 r0 SorterInstruction.FilterSortingClassCompare
+put d4 0 r0
+sll r0 SortingClass.Ingots 16
+sll r1 Equals 8
+or r0 r0 r1
+or r0 r0 SorterInstruction.FilterSortingClassCompare
+put d4 1 r0
+afterSorter:
+clr db
+s d0 Mode 9
+move r16 0
+push -654790771 # steel
+push 902
+push 99998
+push 1020
+push -82508479 # solder
+push 352
+push 548
+push 1020
+push -297990285 # invar
+push 1202
+push 1498
+push 18020
+push 502280180 # electrum
+push 602
+push 99998
+push 820
+push 1058547521 # Constantin
+push 1002
+push 99998
+push 20020
+push -787796599 # inconel
+push 602
+push 99998
+push 23520
+push 156348098 # waspaloy
+push 435
+push 798
+push 50050
+push -1897868623 # stellite
+push 1802
+push 99998
+push 10020
+push 412924554 # astroloy
+push 1002
+push 99998
+push 30020
+push 1579842814 # hasteloy
+push 952
+push 998
+push 25020
+AfterStack:
+l r10 d3 Lock
+brne r10 1 3
+l r11 d0 Setting
+l r10 d3 Lock
+brne r10 1 3
+s d0 Setting r11
+jr -3
+l r4 d0 Setting
+l r5 d1 Setting
+l r6 d2 Temperature
+sub r6 r6 0.1
+mul r15 r4 4
+add r16 r15 4
+pop r1
+breq r5 0 6
+pop r0
+brle r0 r6 2
+move r0 r6
+sub r16 r16 1
+jr 3
+sub r16 r16 1
+pop r0
+pop r2
+s db Setting r2
+sbn -851746783 -1941351525 Setting r0
+sbn -851746783 -823947099 Setting r1
+sbn -851746783 -74186795 Setting r2
+j AfterStack

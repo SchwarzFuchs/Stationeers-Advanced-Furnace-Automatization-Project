@@ -1,0 +1,19 @@
+#0 - ColdPipeAnalyzer.ReferenceId
+#1 - HotPipeAnalyzer.ReferenceId
+#2 - WastePipeAnalyzer.ReferenceId
+#3 - Oxygen Q
+#4 - Nitrogen Q
+#5 - CO2 Q
+#6 - Pollutants Q
+#7 - NO2 Q
+#8 - ColdSpecificHeat
+#9 - HotSpecificHeat
+#10 - WasteSpecificHeat
+#11 - moles needed
+#12 - 1 if waste gas usage is possible instead of hot gas, 2 if instead of cold gas, 0 if not possible
+#13 - needed moles of waste gas
+#14 - needed moles of hot gas if waste gas is used
+#15 - needed moles of cold gas if waste gas is used
+#16 - needed moles of hot gas if waste gas isn't used
+#17 - needed moles of cold gas if waste gas isn't used
+#32 - max pump speed
