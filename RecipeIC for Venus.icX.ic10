@@ -1,46 +1,61 @@
+bdns d4 afterSorter
+s d4 Mode 1 # Any
+s d4 On 1
+clr d4
+sll r0 SortingClass.Ores 16
+sll r1 Equals 8
+or r0 r0 r1
+or r0 r0 SorterInstruction.FilterSortingClassCompare
+put d4 0 r0
+sll r0 SortingClass.Ingots 16
+sll r1 Equals 8
+or r0 r0 r1
+or r0 r0 SorterInstruction.FilterSortingClassCompare
+put d4 1 r0
+afterSorter:
 clr db
-s d0 Mode 16
+s d0 Mode 9
 move r16 0
-push -654790771
-push 905
-push 99999
-push 1050
-push -82508479
-push 355
-push 545
-push 1050
-push -297990285
-push 1205
-push 1495
-push 18100
-push 502280180
-push 605
-push 99999
-push 825
-push 1058547521
-push 1005
-push 99999
-push 20100
-push -787796599
-push 605
-push 99999
-push 23600
-push 156348098
-push 405
-push 795
-push 50300
-push -1897868623
-push 1805
-push 99999
-push 10100
-push 412924554
-push 1005
-push 99999
-push 30150
-push 1579842814
-push 955
-push 995
-push 25100
+push -654790771 # steel
+push 902
+push 99998
+push 1020
+push -82508479 # solder
+push 548
+push 548
+push 1020
+push -297990285 # invar
+push 1202
+push 1498
+push 18020
+push 502280180 # electrum
+push 738
+push 99998
+push 820
+push 1058547521 # Constantin
+push 1002
+push 99998
+push 20020
+push -787796599 # inconel
+push 738
+push 99998
+push 23520
+push 156348098 # waspaloy
+push 738
+push 798
+push 50050
+push -1897868623 # stellite
+push 1802
+push 99998
+push 10020
+push 412924554 # astroloy
+push 1002
+push 99998
+push 30030
+push 1579842814 # hasteloy
+push 952
+push 998
+push 25020
 AfterStack:
 l r10 d3 Lock
 brne r10 1 3
