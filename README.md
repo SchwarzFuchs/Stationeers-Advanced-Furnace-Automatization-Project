@@ -100,6 +100,7 @@ Connections:
 | d4 | Logic Sorter** |
 
 \* Any one of them
+
 \** Optional
 #### Furnace Orchestrator IC
 Monitors button presses and orchestrates all other chips, except for the Recipe IC.
