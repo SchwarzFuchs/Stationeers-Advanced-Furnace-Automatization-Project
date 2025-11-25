@@ -1,4 +1,3 @@
-s d2 Color 5
 move r6 -1471488033
 move r7 239695817
 move r8 993965803
@@ -10,16 +9,12 @@ getd r0 r1 sp
 push r0
 jr -3
 lbn r5 -851746783 -1941351525 Setting Maximum
-sbn -1129453144 -217226766 Mode 0
 move r10 0
-sbn -815193061 -206058721 Setting 0
-sbn -815193061 -206058721 Mode 1
-sbn -815193061 -206058721 On 1
 get r11 db 11
 sleep 1
 mul r12 0.0717122 r5
 sbn -1129453144 -217226766 PressureExternal r12
-mul r12 r12 0.995
+mul r12 r12 0.9999
 get r2 db 13
 get r1 db 12
 brne r1 0 3
@@ -37,13 +32,13 @@ add r15 r2 r0
 div r13 r2 r15
 move r16 1.5
 s d0 SoundAlert 21
-mainCycleStart:
-bge r10 r11 mainCycleEnd
+bge r10 r11 124
+s d2 Color 5
 div r0 r10 r11
 sbn -815193061 -206058721 Setting r0
 l r1 d1 On
-brnez r1 15
-brlt r10 120 14
+brnez r1 16
+brlt r10 100 15
 sbn 1310794736 r6 On 0
 sbn 1310794736 r7 On 0
 yield
@@ -54,20 +49,20 @@ lbn r1 -1252983604 -881915129 Pressure Maximum
 jr -2
 sbn -1129453144 -217226766 On 0
 s d5 SettingInput 100
+s d1 Setting 100
 s d1 On 1
 move r16 2
-sleep 2
-l r1 d4 Pressure
-brle r1 1 3
+sleep 1
 l r1 d4 Temperature
-jr 2
+l r2 d4 Pressure
+brgt r2 2 2
 move r1 r5
 l r2 d5 Pressure
 brle r2 5 2
 l r1 d5 Temperature
 div r1 r1 r5
 log r1 r1
-mul r0 r0 48
+mul r0 r0 24 #coef. of temperature self-correction, higher value => more agressive correction
 mul r1 r1 r0
 exp r1 r1
 div r2 r13 r1
@@ -87,6 +82,10 @@ mul r14 r3 8.3144626
 mul r15 r1 r14
 div r1 r15 r4
 add r4 r2 r1
+mul r14 r5 8.3144626
+div r14 940000 r14 #pump speed coef., lower value => lower pump speed
+div r14 r14 r11
+mul r4 r4 r14
 brgt r1 r16 3
 brgt r2 r16 2
 jr 7
@@ -96,9 +95,10 @@ move r0 r2
 div r0 r0 r16
 div r1 r1 r0
 div r2 r2 r0
-div r4 r4 32
 get r3 db 32
-brnez r3 3
+brnez r3 5
+brlt r4 100 2
+move r4 100
 put db 32 r4
 jr 2
 move r0 r3
@@ -110,19 +110,19 @@ yield
 l r10 d4 TotalMoles
 l r1 d5 TotalMoles
 add r10 r10 r1
+lbn r1 435685051 1162784293 TotalMoles Maximum
+add r10 r10 r1
 lbn r4 -1252983604 -881915129 Pressure Maximum
 lbn r3 -1252983604 -881915129 Temperature Maximum
 breqz r3 4
 mul r1 962.17884 r4
 div r1 r1 r3
 add r10 r10 r1
-add r16 r16 2.5
+mul r16 r16 1.75
 brle r16 r0 2
 move r16 r0
-j mainCycleStart
-mainCycleEnd:
+j 34
+sbn 435685051 1162784293 On 0
 sbn 1310794736 r6 On 0
 sbn 1310794736 r7 On 0
-s d2 Color 0
-sbn -815193061 -206058721 On 0
 s db Setting -200
