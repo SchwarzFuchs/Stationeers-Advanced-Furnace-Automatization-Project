@@ -6,7 +6,7 @@
 * System has some setting switches for using in different conditions without any code changes.
 ## Setting up
 ### Basic scheme:
-<img width="5210" height="3510" alt="StationeersAdvFurnaceScheme drawio (1)" src="https://github.com/user-attachments/assets/e3e99161-5d3f-44a7-83be-c09981dc77a0" />
+![StationeersAdvFurnaceScheme](https://github.com/user-attachments/assets/938702a3-14dc-4a8f-b502-250ae87a0bab)
 
 \* For detailed scheme see repo files
 ### Name-dependent devices
@@ -19,6 +19,7 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Pipe Analyzer | Waste Pipe Analyzer | -114736392 |
 | Pipe Analyzer | Hot/Cold Mix Pipe Analyzer | -2109432728 |
 | Pipe Analyzer | Waste Buffer Pipe Analyzer | -887401742 |
+| Pipe Analyzer | Secondary Buffer Pipe Analyzer | 1162784293 |
 | Turbo Volume Pump | Hot/Cold Mix Pump | 454545836 |
 | Turbo Volume Pump | Hot Gas Pump | -1471488033 |
 | Turbo Volume Pump | Cold Gas Pump | 239695817 |
@@ -55,8 +56,8 @@ ICs are adressing some devices by their names. So you should name them the same 
 ### List of building supplies
 | Item      |  Quantity        |
 | ------------ | ------------ |
-| Advanced Furnace | 1 |
-| Kit (Logic switch) | 5 |
+| Kit (Advanced Furnace) | 1 |
+| Kit (Logic Switch) | 5 |
 | Kit (Consoles) | 4 |
 | Logic Memory | 4 |
 | IC Housing | 7 |
@@ -66,25 +67,28 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Circuitboard (Hash Display) | 1 |
 | Kit (Lights) | 1 |
 | Klaxon Speaker | 1 |
-| Pipe Analyzer | 5 |
-| Turbo Volume Pump (Gas) | 4-5** |
+| Pipe Analyzer | 6 |
+| Turbo Volume Pump (Gas) | 4-5* |
 | Volume Pump (Gas) | 2-3** |
 | Kit (Pressure Regulator) | 0-1*** |
+| Kit (Sorter) | 0-1**** |
 | Active Vent | 1 |
 | Gas Sensor | 1 |
 | Kit (Tank Insulated) | >=3 |
-| Pipe Utility (insulated) | >=6 |
-| Pipes (insulated) | >30 |
+| Pipe Utility (Insulated) | >=6 |
+| Pipes (Insulated) | >30 |
 | Cables | Yes |
 
 \* Depends on how much capacity of buffer chutes you want to have.
 
 \** You can replace PreProcessing pump with turbo version for faster preprocessing in some cases.
 
-\*** You probalbly want to have one if you don't want your waste tank to explode.
+\*** You probalbly want to have one on the waste pipeline if you don't want your waste tank to explode.
+
+\**** Optional. You can put sorter between inlet and valve and it will pass only ore and ingots. For those who loves to accidentaly drop random items to the furnace.
 ### ICs and their connections
 #### Recipe IC
-Allows you to select a recipe and write its parameters to memory. There're 3 versions of code for it, one is universal and the two other ones are optimised for Venus and Vulcan accordingly by increasing the minimum teperature for some alloys.
+Allows you to select a recipe and write its parameters to memory. There're 3 versions of code for it, one is universal and the two other ones are optimised for Venus and Vulcan accordingly by increasing the minimum teperature for some alloys. Also configures the sorter (if presented).
 
 Connections: 
 | dN      |  Device        |
@@ -93,8 +97,10 @@ Connections:
 | d1 | Temperature Priority Switch |
 | d2 | HotTank* |
 | d3 | Start Button |
+| d4 | Logic Sorter** |
 
 \* Any one of them
+\** Optional
 #### Furnace Orchestrator IC
 Monitors button presses and orchestrates all other chips, except for the Recipe IC.
 
@@ -175,8 +181,8 @@ Connections:
 ### Advices
 * Volume of pipes between tanks and pumps should be several hundred liters, at least 300. Small volume leads to bad mixing accuracy.
 * Mix buffer pipe volume shouldn't be big, otherwise system will work slow. 100-150L are optimal.
-* If you feel that system overcorrects itself too much and furnace temperature behaves like sisusoid, try lowering the value on line 66 of PrePressurizing IC, default value is 48.
-* If the pipe between the mix pump and the furnace gets damaged from overpressure (theoretically it can happen if you have super high pressure in your tanks), decrease the value on line 85 of PrePressurizing IC, default value is 470000.
+* If you feel that system overcorrects itself too much and furnace temperature behaves like sisusoid, try lowering the value on line 64 of PrePressurizing IC, default value is 24. Also you can increase it if system undercorrects itself. 
+* If the pipe between the mix pump and the furnace gets damaged from overpressure (theoretically it can happen if you have super high pressure in your tanks), decrease the value on line 85 of PrePressurizing IC, default value is 940000.
 * The system continuously adjusts pump settings, but changes in gas composition and temperature during the smelting process may lead to worse mixing accuracy.
 * Don't copy the code from sample world ICs. They may not contain all the latest improvements over the code in the repository.
 * You don't need to turn on all ICs, only the Main and Recipe ones.
