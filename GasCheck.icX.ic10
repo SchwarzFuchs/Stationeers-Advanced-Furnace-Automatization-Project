@@ -21,8 +21,8 @@ l r0 d1 RatioVolatiles
 l r1 d3 RatioVolatiles
 add r0 r0 r1
 l r1 d2 RatioVolatiles
-brgtz r0 3
-brgtz r1 2
+brgt r0 0.0002 3
+brgt r1 0.0002 2
 jr 6
 s d4 Color 4
 brne r2 -102 4
@@ -33,8 +33,8 @@ l r0 d1 RatioSteam
 l r1 d3 RatioSteam
 add r0 r0 r1
 l r1 d2 RatioSteam
-brgtz r0 3
-brgtz r1 2
+brgt r0 0.0002 3
+brgt r1 0.0002 2
 jr 8
 s d4 Color 4
 brne r2 -102 6
