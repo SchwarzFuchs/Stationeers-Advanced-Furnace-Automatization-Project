@@ -68,7 +68,7 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Kit (Lights) | 1 |
 | Klaxon Speaker | 1 |
 | Pipe Analyzer | 6 |
-| Turbo Volume Pump (Gas) | 4-5* |
+| Turbo Volume Pump (Gas) | 4-5** |
 | Volume Pump (Gas) | 2-3** |
 | Kit (Pressure Regulator) | 0-1*** |
 | Kit (Sorter) | 0-1**** |
@@ -83,7 +83,7 @@ ICs are adressing some devices by their names. So you should name them the same 
 
 \** You can replace PreProcessing pump with turbo version for faster preprocessing in some cases.
 
-\*** You probalbly want to have one on the waste pipeline if you don't want your waste tank to explode.
+\*** You probably want to have one on the waste pipeline if you don't want your waste tank to explode.
 
 \**** Optional. You can put sorter between inlet and valve and it will pass only ore and ingots. For those who loves to accidentaly drop random items to the furnace.
 ### ICs and their connections
