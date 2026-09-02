@@ -7,12 +7,14 @@ lbn r5 -851746783 -74186795 Setting Maximum
 l r1 d3 Pressure
 s d4 SettingInput 100
 s d1 On 1
-jr 4
+jr 2
 while0:
-sgt r15 r1 1
+sgt r15 r1 0.1
 beqz r15 while0exit
-sleep 1
+sleep 2
 l r1 d3 Pressure
+lbn r0 435685051 1162784293 Pressure Maximum
+add r1 r1 r0
 l r0 d4 RecipeHash
 seq r14 r0 r5
 beqz r14 if0exit

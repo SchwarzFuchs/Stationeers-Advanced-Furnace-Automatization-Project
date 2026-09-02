@@ -87,6 +87,7 @@ sbn 1310794736 454545836 Setting 100
 sbn -1129453144 -217226766 Mode 1
 l r1 d2 Pressure
 lbn r8 -851746783 -1125432018 Setting Maximum
+lbn r5 435685051 -2109432728 Pressure Maximum
 l r2 d2 Temperature
 lbn r3 -1252983604 -881915129 Temperature Maximum
 sbn -321403609 -982582202 On 1
@@ -116,6 +117,7 @@ div r2 r15 r3
 lbn r3 -1252983604 -881915129 Temperature Maximum
 s d2 SettingOutput r2
 jr -21
+yield
 s d2 SettingOutput 0
 s d2 SettingInput 0
 sbn 1310794736 454545836 On 0

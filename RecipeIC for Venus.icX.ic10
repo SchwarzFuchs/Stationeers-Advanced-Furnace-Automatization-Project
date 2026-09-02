@@ -1,5 +1,5 @@
 bdns d4 afterSorter
-s d4 Mode 1 # Any
+s d4 Mode 1
 s d4 On 1
 clr d4
 sll r0 SortingClass.Ores 16
@@ -7,11 +7,6 @@ sll r1 Equals 8
 or r0 r0 r1
 or r0 r0 SorterInstruction.FilterSortingClassCompare
 put d4 0 r0
-sll r0 SortingClass.Ingots 16
-sll r1 Equals 8
-or r0 r0 r1
-or r0 r0 SorterInstruction.FilterSortingClassCompare
-put d4 1 r0
 afterSorter:
 clr db
 s d0 Mode 9

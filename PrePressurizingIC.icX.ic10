@@ -32,7 +32,8 @@ add r15 r2 r0
 div r13 r2 r15
 move r16 1.5
 s d0 SoundAlert 21
-bge r10 r11 124
+mainCycleStart:
+bge r10 r11 mainCycleEnd
 s d2 Color 5
 div r0 r10 r11
 sbn -815193061 -206058721 Setting r0
@@ -62,7 +63,7 @@ brle r2 5 2
 l r1 d5 Temperature
 div r1 r1 r5
 log r1 r1
-mul r0 r0 24 #coef. of temperature self-correction, higher value => more agressive correction
+mul r0 r0 32
 mul r1 r1 r0
 exp r1 r1
 div r2 r13 r1
@@ -83,7 +84,7 @@ mul r15 r1 r14
 div r1 r15 r4
 add r4 r2 r1
 mul r14 r5 8.3144626
-div r14 940000 r14 #pump speed coef., lower value => lower pump speed
+div r14 940000 r14
 div r14 r14 r11
 mul r4 r4 r14
 brgt r1 r16 3
@@ -121,7 +122,8 @@ add r10 r10 r1
 mul r16 r16 1.75
 brle r16 r0 2
 move r16 r0
-j 34
+j mainCycleStart
+mainCycleEnd:
 sbn 435685051 1162784293 On 0
 sbn 1310794736 r6 On 0
 sbn 1310794736 r7 On 0
