@@ -4,6 +4,8 @@
 * System automatically checks if your gases satisfy conditions for smelting and tells you if there are any problems.
 * Gas mixing accuracy is >99.5%.
 * System has some setting switches for using in different conditions without any code changes.
+## Work demonstration
+[Video link](https://packaged-media.redd.it/m72fw23o6xdg1/pb/m2-res_720p.mp4?m=DASHPlaylist.mpd&var=sgpssan&v=1&e=1788321600&s=351306aa9c8280fac705b5d3014426b9040aab95)
 ## Setting up
 ### Basic scheme:
 ![StationeersAdvFurnaceScheme](https://github.com/user-attachments/assets/938702a3-14dc-4a8f-b502-250ae87a0bab)
@@ -36,12 +38,6 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Button | Gas Check Button | -803738805 |
 | Switch | Temperature Priority Switch | 889038674 |
 | Switch | No Waste Usage Switch | 418789413 |
-| Small Insulated Tank* | Hot Tank Small | -382368696 |
-| Small Insulated Tank | Cold Tank Small | 765508678 |
-| Small Insulated Tank | Waste Tank Small | 986570611 |
-| Big Insulated Tank | Hot Tank Big | 1739686464 |
-| Big Insulated Tank | Cold Tank Big | -1045288362 |
-| Big Insulated Tank | Waste Tank Big | 2088526909 |
 | Active Vent | Active Vent Furnace Env. Pressurize | -217226766 |
 | Gas Sensor | Gas Sensor Furnace Env. | -881915129 |
 | IC Housing | Furnace Orchestrator IC | 125439440 |
@@ -52,7 +48,6 @@ ICs are adressing some devices by their names. So you should name them the same 
 | IC Housing | PrePressurizing | 2730726 |
 | IC Housing | Furnace Finalizer IC | 1332447006 |
 
-\* System supports any amount of insulated tanks of any size
 ### List of building supplies
 | Item      |  Quantity        |
 | ------------ | ------------ |
@@ -75,33 +70,30 @@ ICs are adressing some devices by their names. So you should name them the same 
 | Active Vent | 1 |
 | Gas Sensor | 1 |
 | Kit (Tank Insulated) | >=3 |
-| Pipe Utility (Insulated) | >=6 |
 | Pipes (Insulated) | >30 |
 | Cables | Yes |
 
 \* Depends on how much capacity of buffer chutes you want to have.
 
-\** You can replace PreProcessing pump with turbo version for faster preprocessing in some cases.
+\** You can replace PreProcessing pump with turbo version for faster preprocessing in case of low pressure or temperature in the pipe connected to it.
 
-\*** You probably want to have one on the waste pipeline if you don't want your waste tank to explode.
+\*** You probably want to have one near the waste tank if you don't want it to explode.
 
-\**** Optional. You can put sorter between inlet and valve and it will pass only ore and ingots. For those who loves to accidentaly drop random items to the furnace.
+\**** Optional. You can put sorter between inlet and valve and it will pass only ore and ingots. For those who loves to accidentally drop random items to the furnace.
 ### ICs and their connections
 #### Recipe IC
-Allows you to select a recipe and write its parameters to memory. There're 3 versions of code for it, one is universal and the two other ones are optimised for Venus and Vulcan accordingly by increasing the minimum teperature for some alloys. Also configures the sorter (if presented).
+Allows you to select a recipe and write its parameters to memory. There're 3 versions of code for it, one is universal and the two other ones are optimized for Venus and Vulcan accordingly by increasing the minimum temperature for some alloys. Also configures the sorter (if presented).
 
 Connections: 
 | dN      |  Device        |
 | ------------ | ------------ |
 | d0 | Dial |
 | d1 | Temperature Priority Switch |
-| d2 | HotTank* |
+| d2 | Hot Pipe Analyzer |
 | d3 | Start Button |
-| d4 | Logic Sorter** |
+| d4 | Logic Sorter* |
 
-\* Any one of them
-
-\** Optional
+\* Optional, check supply list for details
 #### Furnace Orchestrator IC
 Monitors button presses and orchestrates all other chips, except for the Recipe IC.
 
@@ -148,7 +140,7 @@ Connections:
 | d2 | Furnace |
 | d3 | LED |
 | d4 | Klaxon |
-| d5 | HotTank* |
+| d5 | Hot Pipe Analyzer |
 
 \* Any one of them
 #### PrePressurizing IC
@@ -176,21 +168,23 @@ Connections:
 | d4 | Advanced Furnace |    
 
 ## Important
+### Limitations
+* There shouldn't be any exotic gases in the pipes. Due to line limit Gas Calculator and Gas Checker ICs support only next gases: Oxygen, Nitrogen, Carbon Dioxide, Pollutant, Nitrous Oxide, Hydrochloric Acid. Presence of other gases will lead to wrong mixing. 
 ### Setting switches
 * Temperature Priority Switch — When set to 1, the system will use as little cold gas as possible. Use it when you are short on cold gas.
 * No Waste Usage Switch — name speaks for itself.
 ### Advices
-* Volume of pipes between tanks and pumps should be several hundred liters, at least 300. Small volume leads to bad mixing accuracy.
-* Mix buffer pipe volume shouldn't be big, otherwise system will work slow. 100-150L are optimal.
-* If you feel that system overcorrects itself too much and furnace temperature behaves like sisusoid, try lowering the value on line 64 of PrePressurizing IC, default value is 24. Also you can increase it if system undercorrects itself. 
+* Volume of pipes should be at least a few thousands liters. Small volume leads to bad mixing accuracy.
+* Mix buffer pipe volume shouldn't be big, otherwise system will work slower. 100-150L are optimal.
+* If you feel that system overcorrects itself too much and furnace temperature behaves like sisusoid, try lowering the value on line 64 of PrePressurizing IC, default value is 32. Also you can increase it if system undercorrects itself. 
 * If the pipe between the mix pump and the furnace gets damaged from overpressure (theoretically it can happen if you have super high pressure in your tanks), decrease the value on line 85 of PrePressurizing IC, default value is 940000.
 * The system continuously adjusts pump settings, but changes in gas composition and temperature during the smelting process may lead to worse mixing accuracy.
 * Don't copy the code from sample world ICs. They may not contain all the latest improvements over the code in the repository.
-* You don't need to turn on all ICs, only the Main and Recipe ones.
+* You don't need to turn on all ICs, only the Main and Recipe ones. Hot Pipe Analyzer should always be turned on for correct work of Recipe IC.
 * You can connect PreProcessing pump to the cold pipe if your "cold" gas is hotter than 450K. Or to the any other pipe that is hot enough, the furnace waste one for example. Don't forget to change the tank on the IC dials in this case.
 * You can set any target temperature, pressure and hash by turning off Recipe IC and setting values directly into logic memory chips. You also can change the minimum waste preserve tepmerature this way without turning Recipe IC off, but if it will be lower than the the tepmperature of cold gas, it will be automatically increased.
 ### Error messages from klaxon
-* Fire — you have volatiles in your pipes/tanks. Remove or burn it.
+* Fire — you have methane in your pipes/tanks. Remove or burn it.
 * Temperature low — your hot gas isn't hot enough. It could be about gas you use for smelting (should be hotter than target temperature) or about gas you use for preprocessing (should be hotter than 450K).
 * One Pressure low — you don't have enough hot gas.
 * Temperature high — your cold gas isn't cold enough.
