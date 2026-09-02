@@ -32,8 +32,7 @@ add r15 r2 r0
 div r13 r2 r15
 move r16 1.5
 s d0 SoundAlert 21
-mainCycleStart:
-bge r10 r11 mainCycleEnd
+bge r10 r11 124
 s d2 Color 5
 div r0 r10 r11
 sbn -815193061 -206058721 Setting r0
@@ -122,8 +121,7 @@ add r10 r10 r1
 mul r16 r16 1.75
 brle r16 r0 2
 move r16 r0
-j mainCycleStart
-mainCycleEnd:
+j 34
 sbn 435685051 1162784293 On 0
 sbn 1310794736 r6 On 0
 sbn 1310794736 r7 On 0

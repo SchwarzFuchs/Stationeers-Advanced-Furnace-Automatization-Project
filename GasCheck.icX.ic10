@@ -126,4 +126,3 @@ s d4 Color 2
 brne r2 -102 2
 s db Setting -200
 j 0
-j 0

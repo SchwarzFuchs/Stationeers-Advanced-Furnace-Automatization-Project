@@ -29,16 +29,14 @@ brle r3 10 3
 s d1 On 1
 sleep 2.5
 s d2 SettingInput 100
-whilestart1:
-beqz r3 whileend1
+beqz r3 80
 s d1 On 1
 add r4 r4 r3
 s d0 Open 1
 yield
 s d0 Open 0
 l r9 d2 Reagents
-whilestart2:
-bge r9 r4 whileend2
+bge r9 r4 77
 l r1 d5 Pressure
 div r15 r1 26000
 div r1 1 r15
@@ -76,12 +74,10 @@ move r5 r2
 move r6 r7
 add r8 r8 r7
 l r9 d2 Reagents
-j whilestart2
-whileend2:
+j 38
 s d1 On 0
 ls r3 d0 0 Quantity
-j whilestart1
-whileend1:
+j 31
 s d3 Color 0
 sbn 1310794736 454545836 Setting 100
 sbn -1129453144 -217226766 Mode 1
